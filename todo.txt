@@ -1,0 +1,13 @@
+make this into a python script so I can reuse MamlReader functions. 
+
+inputs: 
+config yaml - for urls (start with those, then head to files) (todo: why am I using raml or what not ? that sucks)
+yaml for music parts - header, melodies, sections, songs, arrangements (todo: define keys for those)
+
+exchanges: 
+NBEF , define somewhere in code different shapes 
+
+middleware: 
+basically just put everything together at notes level, then arrange/manipulate at section/songs level 
+- get data from urls, then bring back info into song
+............................................                                  
