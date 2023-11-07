@@ -1,0 +1,1 @@
+C:/projects/music-user-reform/midi-nbef-converter C:/projects/music-user-reform/midi-nbef-converter/song.fornof.midi.mid C:/projects/music-user-reform/midi-nbef-converter/song.fornof.midi.yml  

@@ -1,0 +1,39 @@
+# header - tempo, key/starting note, name, author, song, description  
+# phrases - those work well, with type 
+# sentences - group of phrases
+# paragraphs - group of sentences
+# pages - group of paragraphs 
+# book - group of pages 
+# idea: have a "end here" on group sections that says to stop there and not process other groups, have a "solo" to play phrases ? 
+# idea : can I have each segment output to mid/nbef files? output_nbef: filepath , output_midi : filepath
+# idea , at anytime I can read in a nbef flat_file that will direct copy notes from that flat_file and add. 
+details: 
+  author: Robert Fornof
+  version: 1.0.1
+  song_name: Beautiful Butterfly
+  description: Wrote this out of necessity to build out a working song. 
+header:
+  tempo : 129
+  key: D3
+  type: harmonic_minor
+  save_path: "C:\\projects\\music-user-reform\\save"
+  output_live_port: "IAC_DRIVER b1 2"
+phrases:
+
+  - name: phrase.mamlsocket.1
+    type: fornof.mamlsocket
+    output_live: true
+    track: 3 
+    input:  |
+      this=5aaaabbbbaaaabbbbaaaabbbbaaaabbbb//A
+      this
+
+  - name: phrase.mamlsocket.2
+    type: fornof.mamlsocket
+    output_live: true
+    track: 3 
+    input:  |
+      this=4songheresongtheresongeverywheresong//P
+      this
+
+combinations: []

@@ -1,0 +1,16 @@
+note_type: midi
+notes:
+- time_tick: 0
+  midi: 69
+  velocity: 80
+  signal: note_on
+- time_tick: 32
+  midi: 69
+  velocity: 80
+  signal: note_off
+midi_ppq: 64
+author: Robert Fornof
+tempo: 120
+version_maml: 0.1.9
+beat_type: signal_tick
+version: 1.0.0

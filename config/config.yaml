@@ -1,0 +1,19 @@
+# fornof.gifts.url:
+#   type: url                                                                                                                                                                                                     
+#   url: http://localhost:3000/
+#   method: POST
+#   headers: {}
+#   input_body_key: notes # this is what key to paste in
+#   command_for_body: '{"notes": $notes}' #this is best if it is a string
+#   input_file_type: json # yaml, json, text -- this is what type it is , only yaml to start.
+
+# fornof.mamlsocket: 
+#   type: file
+#   input_body_key: notes
+#   input_body_type: text
+#   input_file: $PATH\\target\\midi_split.txt # this is what will be populated with string or yaml dumps. 
+#   input_file_type: text # yaml, json 
+#   path: "C:\\projects\\music-user-reform\\MamlSocket"
+#   source_file: None # placeholder for sourcing things like venv and such. 
+#   call: "java -jar $PATH\\target\\MamlSocket-1.0-SNAPSHOT.jar -i $INPUT_FILE -o '$OUTPUT_FILE'"
+#   output_file: "c:\\web\\mid\\central_use.yml"
