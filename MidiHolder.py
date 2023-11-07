@@ -7,16 +7,17 @@ class MidiHolder:
         self.tempo = tempo
         self.track_time = []
         time_to_place_add_tempo = 0
-
+        self.ppq = 960
+        
         self.mid = MIDIFile(
           numTracks=num_tracks,
           removeDuplicates=True,
           deinterleave=False,
           adjust_origin=False,
           file_format=1,
-          ticks_per_quarternote=960,
+          ticks_per_quarternote=self.ppq,
           eventtime_is_ticks=True)
-       
+        
         for i in range(0,num_tracks):
             self.track_time.append(0)
             self.mid.addTempo(i, time_to_place_add_tempo, tempo)
@@ -68,8 +69,8 @@ class MidiHolder:
     def dur_to_ticks(self, dur,tempo):
         return self.sec_to_ticks(self, dur/1000,tempo)
 
-    def ticks_to_dur(self, ticks):
-        return mido.tick2second(ticks)*1000
+    def ticks_to_dur(self, ticks, ppq, tempo):
+        return mido.tick2second(ticks,ppq,tempo)*1000
 
     def set_ticks(self,ticks):
         self.mid.ticks_per_quarternote= ticks

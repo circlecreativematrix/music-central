@@ -1,0 +1,57 @@
+# header - tempo, key/starting note, name, author, song, description  
+# phrases - those work well, with type 
+# sentences - group of phrases
+# paragraphs - group of sentences
+# pages - group of paragraphs 
+# book - group of pages 
+# idea: have a "end here" on group sections that says to stop there and not process other groups, have a "solo" to play phrases ? 
+# idea : can I have each segment output to mid/nbef files? output_nbef: filepath , output_midi : filepath
+# idea , at anytime I can read in a nbef flat_file that will direct copy notes from that flat_file and add. 
+details: 
+  author: Robert Fornof
+  version: 1.0.1
+  song_name: Beautiful Butterfly
+  description: Wrote this out of necessity to build out a working song. 
+header:
+  tempo : 129
+  key: D3
+  type: harmonic_minor
+  save_path: "C:\\projects\\music-user-reform\\save"
+  output_live_port: "IAC_DRIVER b1 2"
+phrases:
+ # midi takes forever, best to output ot a yaml NBEF and import that way. 
+  - name: phrase.nbef.1
+    type: fornof.nbef
+    path: "./data/song.fornof.midi.yml"
+    output_midi: "midi\\phrase.midi.1.mid"
+    output_nbef: "nbef\\phrase.midi.1.yaml"
+    output_live: true
+
+
+combinations: 
+  - name: combo.sample3
+    type: combination
+    output_midi: "midi\\combo.sample3.mid"
+    output_nbef: "nbef\\combo.sample3.yaml"
+    input:
+      - phrase.sample1
+      - phrase.sample2
+      - phrase.sample1
+  
+  - name: combo.sample4
+    type: combination
+    output_midi: "midi\\combo.sample4.mid"
+    output_nbef: "nbef\\combo.sample4.yaml"
+    input:
+      - combo.sample3
+      - phrase.sample2
+      - combo.sample3
+
+  - name: combo.sample5
+    type: combination
+    output_midi: "midi\\combo.sample5.mid"
+    output_nbef: "nbef\\combo.sample5.yaml"
+    input:
+      - combo.sample4
+      - phrase.sample2
+      - combo.sample3
