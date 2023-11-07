@@ -1,0 +1,63 @@
+# header - tempo, key/starting note, name, author, song, description  
+# phrases - those work well, with type 
+# sentences - group of phrases
+# paragraphs - group of sentences
+# pages - group of paragraphs 
+# book - group of pages 
+# idea: have a "end here" on group sections that says to stop there and not process other groups, have a "solo" to play phrases ? 
+# (done) idea : can I have each segment output to mid/nbef files? output_nbef: filepath , output_midi : filepath
+# (done) idea , at anytime I can read in a nbef flat_file that will direct copy notes from that flat_file and add. 
+details: 
+  author: Robert Fornof
+  version: 1.0.1
+  song_name: Beautiful Butterfly
+  description: Wrote this out of necessity to build out a working song. 
+header:
+  tempo : 129
+  key: D3
+  type: harmonic_minor
+  save_path: "C:\\projects\\music-user-reform\\save"
+  output_live_port: "IAC_DRIVER b1 2" # this needds to throw an error if not exists and on live
+phrases:
+
+  phrase.mamlsocket.1:
+    type: fornof.mamlsocket
+    input:  |
+      this=5aaaabbbbaaaabbbbaaaabbbbaaaabbbb//A
+      this
+
+  phrase.mamlsocket.2:
+    type: fornof.mamlsocket
+    input:  |
+      this=5aaafaffaaafaffaafaabbaafbbaaaafffaffaab//APHPHPHAHAAPP
+      this
+
+
+combinations: 
+  combo.sample3:
+    type: combinations_phrases
+    output_midi: "midi\\combo.sample3.mid"
+    output_nbef: "nbef\\combo.sample3.yaml"
+    output_live: true
+    list:
+      - name: phrase.mamlsocket.1
+      - name: phrase.mamlsocket.2
+      - name: phrase.mamlsocket.1
+
+  # combo.sample4:
+  #   type: combinations 
+  #   output_midi: "midi\\combo.sample4.mid"
+  #   output_nbef: "nbef\\combo.sample4.yaml"
+  #   list:
+  #     - name: combo.sample3
+  #     - name: phrase.sample2
+  #     - name: combo.sample3
+
+  # combo.sample5:
+  #   type: combination
+  #   output_midi: "midi\\combo.sample5.mid"
+  #   output_nbef: "nbef\\combo.sample5.yaml"
+  #   list:
+  #     - name: combo.sample4
+  #     - name: phrase.sample2
+  #     - name: combo.sample3
