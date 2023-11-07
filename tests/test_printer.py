@@ -14,6 +14,7 @@ sys.path.append('../')
 maml_path = "./data/example_1.yaml"
 from Printer import Printer 
 from ParseMaml import ParseMaml
+import time, yaml
 #@pytest.mark.skip(reason="no way of currently testing this")
 def test_handle_url():
     printer = Printer()
@@ -65,28 +66,33 @@ def test_handle_maml_phrases_file():
     nbef = printer.handle_file(config["fornof.mamlsocket"],maml_phrase_item['phrases']['phrase.mamlsocket.1'])
     assert nbef['notes'] != None
 
-#@pytest.mark.skip(reason="slows down tests, but works if unskipped")
+@pytest.mark.skip(reason="slows down tests, but works if unskipped")
 def test_live_out_phrases_file():
     parser = ParseMaml("./data/test_output_live_phrases.yaml")
     parser.fill_vars_with_nbef()
     # should hear something in midi channl
     assert True
 
-
-@pytest.mark.slow
 def test_mid_file_read_to_nbef():
     parser = ParseMaml("./data/test_mid_type.yaml")
     parser.fill_vars_with_nbef()
+    mid_nbef = parser.printer.load_yaml("..\\..\\savenbef\\phrase.midi.working.1.yaml")
+    assert mid_nbef['notes'] > 0 
 
 #@pytest.mark.skip(reason="slows down tests, but works if unskipped")
-
-
 def test_mid_file_read_to_nbef():
     parser = ParseMaml("./data/test_nbef_flatfile.yaml")
     parser.fill_vars_with_nbef()
+    mid_nbef = parser.printer.load_yaml("..\\..\\savenbef\\phrase.nbef.yaml")
+    assert mid_nbef['notes'] > 0 
 
 #@pytest.mark.slow
 def test_combo_phrases():
     parser = ParseMaml("./data/test_combinations1.yaml")
     parser.fill_vars_with_nbef()
     parser.handle_combinations()
+    time.sleep(1.1)
+    with open( "..\\..\\savenbef\\combo.sample3.yaml", "r") as file:
+        mid_nbef =yaml.safe_load(file.read())
+       
+        assert len(mid_nbef['notes']) > 0

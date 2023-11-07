@@ -47,7 +47,7 @@ class Combinations():
                 raise Exception('cannot have different note_types for shared combos, (future case to convert here)')
             if blobbed_output_nbef['beat_type'] != nbef['beat_type']:
                 raise Exception('cannot have different beat_types for shared combos, all beats must be same type (future case to convert here)')
-            print(blobbed_output_nbef['notes'][-1])
+       
             last_note_time_offset = blobbed_output_nbef['notes'][-1][key_time]
             # get last note time_ms, 
             # add that time to each note in the next array
@@ -58,7 +58,10 @@ class Combinations():
                 notecp[key_time] += last_note_time_offset
                 blobbed_output_nbef['notes'].append(notecp)
                 i +=1
-
+        def sort_time(val):
+                return val[key_time]
+        
+        blobbed_output_nbef['notes'].sort(key=sort_time)
         return blobbed_output_nbef
     
     def add_combo_to_bag_key(self, combo, combination_nbef, bag, name):
@@ -78,8 +81,7 @@ class Combinations():
         if port:
             self.printer.set_port( port)
             self.printer.live.open_port()
-        else: 
-            raise Exception('header section needs to have something for port, for example: output_live_port: "IAC_DRIVER b1 2"')
+        
         # take combinations and iterate over each one. 
             # if bag.get(name) is not None on this, 
                 # skip as it has already been handled
@@ -96,7 +98,6 @@ class Combinations():
         for name, combo in maml['combinations'].items():
             if bag.get(name) is None:
                 self.add_combo_to_bag_key(combo, combination_nbef, bag, name)
-            print(bag[name], 'keepee')
             self.printer.feature_fun(combo, maml, bag, name)
         self.printer.play()
         while len(self.printer.tracks_playing) > 0:
