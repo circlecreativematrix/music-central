@@ -34,7 +34,7 @@ phrases:
 
 
 combinations: 
-  combo.sample3:
+  - name:  "combo.sample3"
     type: combinations_phrases
     output_midi: "midi\\combo.sample3.mid"
     output_nbef: "nbef\\combo.sample3.yaml"

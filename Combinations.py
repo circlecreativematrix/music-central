@@ -95,7 +95,8 @@ class Combinations():
             # output_midi
 
         combination_nbef = []
-        for name, combo in maml['combinations'].items():
+        for combo in maml['combinations']:
+            name = combo['name']
             if bag.get(name) is None:
                 self.add_combo_to_bag_key(combo, combination_nbef, bag, name)
             self.printer.feature_fun(combo, maml, bag, name)

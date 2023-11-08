@@ -25,8 +25,19 @@ fornof.mid:
   input_file: $PATH\\song.fornof.midi.mid # this is what will be populated with string or yaml dumps. 
   input_file_type: mid # yaml, json 
   path: "C:\\projects\\music-user-reform\\midi-nbef-converter" 
-  call: "$PATH\\..\\venv\\Scripts\\python.exe $PATH\\MidiNBEF.py --input $INPUT_FILE --output $OUTPUT_FILE $PATH"  # $PATH\\..\\venv\\Scripts\\activate.bat;python 
+  call: "$PATH\\..\\venv\\Scripts\\python.exe $PATH\\MidiNBEF.py --input $INPUT_FILE --output $OUTPUT_FILE"  # $PATH\\..\\venv\\Scripts\\activate.bat;python 
   output_file: "$PATH\\song.fornof.midi.yml"
+
+fornof.note_beat: 
+  type: file
+  input_body_key: input
+  input_body_type: yaml
+  input_file: $PATH\\song.fornof.note_beat.yaml # this is what will be populated with string or yaml dumps. 
+  input_file_type: yaml # yaml, json 
+  path: "C:\\projects\\music-user-reform\\converter-note-beats" 
+  call: "$PATH\\..\\venv\\Scripts\\python.exe $PATH\\index.py --input $INPUT_FILE --output $OUTPUT_FILE"  # $PATH\\..\\venv\\Scripts\\activate.bat;python 
+  output_file: "$PATH\\song.fornof.midi.yml"
+
 
 fornof.nbef: 
   type: nbef

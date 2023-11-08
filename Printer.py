@@ -137,6 +137,10 @@ class Printer():
         elif input_type == "mid":
            input_from_maml = maml_phrase_item[input_key]
            self.copy_binary_file( input_from_maml, input_file)
+        elif input_type == "yaml":
+            input_from_maml = maml_phrase_item[input_key]
+            with open(input_file, 'w') as file:
+                file.write(yaml.dump(input_from_maml))
         else:
             raise Exception(f'unhandled input type {input_type}')
         # todo for this is yaml and json types. 

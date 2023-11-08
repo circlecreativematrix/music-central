@@ -96,3 +96,13 @@ def test_combo_phrases():
         mid_nbef =yaml.safe_load(file.read())
        
         assert len(mid_nbef['notes']) > 0
+
+def test_combo_phrases():
+    parser = ParseMaml("./data/test_combinations2-multi.yaml")
+    parser.fill_vars_with_nbef()
+    parser.handle_combinations()
+    time.sleep(1.1)
+    with open( "..\\..\\savenbef\\combo.sample4.yaml", "r") as file:
+        mid_nbef =yaml.safe_load(file.read())
+       
+        assert len(mid_nbef['notes']) > 0
