@@ -36,7 +36,7 @@ from ParseMaml import ParseMaml
 #         assert len(mid_nbef['notes']) > 0
 
 def test_combo_phrases():
-    parser = ParseMaml("./data/test_converter_note_beat.yaml")
+    parser = ParseMaml("./data/test_converter_offset.yaml")
     parser.fill_vars_with_nbef()
     #parser.handle_combinations()
     time.sleep(1.1)
@@ -44,3 +44,13 @@ def test_combo_phrases():
         mid_nbef =yaml.safe_load(file.read())
        
         assert len(mid_nbef['notes']) > 0
+
+# def test_note_beats():
+#     parser = ParseMaml("./data/test_converter_note_beat.yaml")
+#     parser.fill_vars_with_nbef()
+#     #parser.handle_combinations()
+#     time.sleep(1.1)
+#     with open( "..\\..\\savenbef\\phrase.note_beat.working.1.yaml", "r") as file:
+#         mid_nbef =yaml.safe_load(file.read())
+       
+#         assert len(mid_nbef['notes']) > 0

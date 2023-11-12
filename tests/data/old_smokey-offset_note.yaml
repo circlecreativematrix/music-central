@@ -1,0 +1,68 @@
+
+details: 
+  author: Robert Fornof
+  version: 1.0.1
+  song_name: Beautiful Butterfly
+  description: Wrote this out of necessity to build out a working song. 
+header:
+  tempo : 129
+  key: C3
+  type: harmonic_minor
+  save_path: "C:\\projects\\music-user-reform\\save"
+  output_live_port: "IAC_DRIVER b1 2"
+phrases:
+   phrase.note_beat.1:
+    type: fornof.offset
+    input: 
+      type: offset
+      start_note: c4
+      scale_type: minor
+      #  {
+      #           0: 0,
+      #           1: 2,
+      #           2: 2+1,
+      #           3: 2*2+1,
+      #           4: 2*3+1,
+      #           5: 2*3+1*2,
+      #           6: 2*4+1*3
+      #       } 
+      tempo: 100
+      # " 0:1/8 0 1 1:1/4 3 -1:1/1 0:1/8 -1 1 1 -1:1/1 
+      note_type: number # letter?
+      beat_type: quantized # or relative_ms for easier generation ? 
+      notes: [" 0:1/4 
+        ^3 0 2 2 
+        ^3 3:6/8 -2:6/8 
+        ^1 _:1/4 _:1/4 -2:1/4 
+        ^2 0 1 1 
+        ^4 -1:12/8 
+        ^0 0:1/4 
+        ^7 0 2 2
+        ^-7 0:6/8
+        ^1 -3:6/8
+        ^-2 _:1/4 _:1/4 1:1/4
+        ^-1 1 -1 -1 
+        ^0 0:18/8
+        "  ,
+        " 0:1/4 
+        0 2 2 
+        3:6/8 -2:6/8 
+        _:1/4 _:1/4 -2:1/4 
+        0 1 1 
+        -1:12/8 
+        ^0 0:1/4 
+        0 2 2
+        0:6/8
+        -3:6/8
+        _:1/4 _:1/4 1:1/4
+        1 -1 -1 
+        ^0 0:18/8
+        "          
+      ] # base case
+    output_live: true
+    output_midi: "midi\\phrase.offset.smokey_offsets.1.mid"
+    output_nbef: "nbef\\phrase.offset.working.1.yaml"
+
+
+
+combinations: []
