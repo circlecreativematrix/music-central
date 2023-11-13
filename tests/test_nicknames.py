@@ -50,7 +50,7 @@ def test_pre_parse_nicknames():
     bag = {}
     nick.pre_parse_nicknames(data['phrases']['phrase.note_offset.1'], data, config['fornof.offset'],bag,'phrase.note_offset.1')
     nick.replace_dollar_with_nicknames(data['phrases']['phrase.note_offset.1'], data, config['fornof.offset'], bag, 'phrase.note_offset.1')
-    #print(bag, 'bag',data['phrases']['phrase.note_offset.1']['input']['notes'])
+    #
     #parser.handle_combinations()
     assert len(bag) > 0 
 # def test_note_beats():

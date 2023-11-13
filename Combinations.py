@@ -7,7 +7,7 @@ class Combinations():
     def add_to_bag(self, name, maml, bag, combination_nbef):
         if maml['combinations'].get(name) is None:
             raise Exception('cannot find', name)
-        print(name, 'needs a search')
+        
         for item in maml['combinations'][name]['list']:
             to_add= bag.get(item['name'])
             if to_add is None:
@@ -53,7 +53,7 @@ class Combinations():
             # add that time to each note in the next array
 
             for note in nbef['notes']:
-                print(note, "!!", i )
+                
                 notecp = note.copy()
                 notecp[key_time] += last_note_time_offset
                 blobbed_output_nbef['notes'].append(notecp)
@@ -77,7 +77,7 @@ class Combinations():
     def handle(self, maml, configs, bag, printer):
         self.printer = printer
         port = maml['header'].get('output_live_port')
-        print(f'outlive opened to {port}')
+        
         if port:
             self.printer.set_port( port)
             self.printer.live.open_port()

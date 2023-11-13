@@ -38,7 +38,7 @@ class MidiHolder:
             self.track_time[channel] += dur_ticks
 
     def add_note_on_off(self, channel, midi_type, note_midi, dur_sec, velocity=22):
-        # print(track, channel, midi_type,note_midi, dur_sec, velocity ,'stuff')
+        # 
         track = channel
         dur_ticks = abs(int(self.sec_to_ticks(dur_sec, self.tempo)))
         # handle rests:
@@ -92,7 +92,7 @@ class MidiHolder:
                 self.track_time[channel], note_midi[0], note_midi[1],note_midi[2], note_midi[3], note_midi[4], 0))
         else:
             raise Exception("midi type not implemented yet for track: " + str(track) + " "+ midi_type )
-        # print(self.mid.tracks[track].eventList, 'event_list')
+        # 
 
     def save(self, path):
         m = re.search(r'\.mid', path)

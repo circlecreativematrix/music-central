@@ -21,7 +21,7 @@ from Nicknames import Nicknames
 class console():
     @staticmethod
     def log( *data):
-        print(data)
+        
 # load the json from http request using requests 
 # iterate over the notes
 #   todo first --> output notes to file (done)
@@ -52,7 +52,7 @@ class Printer():
         self.can_play = False
         self.tracks_playing = []
         #self.maml = self.load_yaml('./arrangements/examples/example_1.yaml') # hardcoded
-        # print( self.url_config['fornof.gifts.url'], 'keys')
+        # 
 
     def load_yaml(self, path):
         with open(path,'r') as file:
@@ -106,13 +106,13 @@ class Printer():
         input_path = input_path.replace('\\\\', "\\") # .replace("\\", "/")
         if trim_file:
           
-           print('inputfile', input_path)
+           
            no_file = re.search(r'(.*/|.*\\)', input_path)
            input_path = no_file.groups(0)[0]
         if not os.path.exists(input_path):
             os.makedirs(input_path)
         else: 
-            print('path exists', input_path)
+            
 
 
     def touch_file(self, input_path):
@@ -122,7 +122,7 @@ class Printer():
     def copy_binary_file(self,source_path, destination_path):
         try:
             shutil.copyfile(source_path, destination_path)
-            print("Binary file copied successfully!")
+            
         except FileNotFoundError:
             raise Exception("Error: One or both of the file paths are invalid."+ source_path + destination_path)
 
@@ -130,14 +130,14 @@ class Printer():
         #    self.write_input_to_input_file(input_file, maml_phrase_item['input'], config_item['input_body_type'])
         input_type = config_item['input_body_type']
         input_key =  config_item['input_body_key']
-        print(input_key, 'input_key', config_item['input_body_key'])
+        
         if not input_key:
             raise Exception(f'input_key {input_key} not found in phrase {name}')
         
         
         if input_type == "text":
             input_from_maml = self.nickname.get_key(input_key,maml_phrase_item)
-            #print(input_from_maml, 'what is this type? ' ,type(input_from_maml))
+            #
             with open(input_file, 'w') as file:
                 file.write(input_from_maml)
         elif input_type == "mid":
@@ -168,7 +168,7 @@ class Printer():
         
 
         with open(output_file,'r') as file:
-            print('reading', output_file)
+            
             nbef_data = file.read()
             return yaml.safe_load(nbef_data)
 
@@ -261,7 +261,7 @@ class Printer():
                      self.live.open_port()
                 #def handle_live(self, start_time, velocity, time_ms,track, midi_num)
                 self.handle_live(start_time, note['velocity'], beat['time_ms'], track  or note['track'], note['midi'], beat['signal'])
-                #print('todo-handle live needs a port from CLI or config, preferrably config? or CLI is alright too')
+                #
         if to_nbef: 
            return self.format_nbef("time_ms","midi", generated['tempo'] , nbef_note_output), errors
         return None, errors
@@ -269,12 +269,12 @@ class Printer():
         self.can_play = True
 
     def stop_clean(self):
-        #print('begin clean')
+        #
         self.can_play = False
         if self.live.output_midi:
             self.live.output_midi.close()
             self.live.open_once = False
-        #print('end clean')
+        #
 
     def play_wait_live(self, generated, track = 0 ):
         marker = [True]
@@ -282,14 +282,14 @@ class Printer():
         #self.can_play = True
         while self.can_play == False: 
              start_time = time.time()
-             print('waiting...')
+             
              time.sleep(.01)
 
         for notebeat in generated['notes']:
            
             note = self.get_note_details(generated, notebeat)
             beat =  self.get_beat_details(generated, notebeat)
-            print('note', note, 'beat', beat, 'start_time', start_time)
+            
             self.handle_live(start_time,note['velocity'], beat['time_ms'], track-1  or note['track'], note['midi'], beat['signal'] )
         self.tracks_playing.remove(marker)
 
@@ -308,7 +308,7 @@ class Printer():
                 nbef, _ = self.read_notes(bag[name], track,  to_live=False, to_file= False , to_nbef= True)
                 with open(path,'w+') as file:
                     file.write(yaml.dump(nbef))
-                print(f'saved {name} to {path}')
+                
 
     def handle_output_midi(self, phrase, maml, bag, name):
             
@@ -322,7 +322,7 @@ class Printer():
             # read_notes(self, generated, track = 0, to_live=False, to_file= True, to_nbef= True):
             self.read_notes(bag[name], track,  to_live=False, to_file= True , to_nbef= False)
             self.save(path)
-            print(f'saved {name} to {path}')
+            
             self.clear()
 
     def after_parse_features(self, phrase,maml,bag, name, port_path):
@@ -330,7 +330,7 @@ class Printer():
             if not port_path:
                 raise Exception('header section needs to have port to output live, e.g: output_live_port: "IAC_DRIVER b1 2"')
             track = phrase.get('track', 0)
-            print(bag[name], 'name baggy')
+            
             thread_live = Thread(target=self.play_wait_live, args=[bag[name], track ])
             thread_live.start()
 
@@ -348,10 +348,10 @@ if __name__ == '__main__':
     printer = Printer()
     #notes =printer.request_notes()
     #out,err = printer.read_notes(notes,0,to_live=True,to_file=False, to_nbef=True)
-    #print(out, err)
+    #
     #printer.save("poc3.mid")
 
     notes = printer.file_run_and_open_notes()
     nbef,err = printer.read_notes(notes,0,to_live=False,to_file=True, to_nbef=True)
     #printer.save('maml-thing.mid')
-    #print(nbef )
+    #

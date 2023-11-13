@@ -25,7 +25,7 @@ class ParseMaml:
     def fill_vars_with_nbef(self):
 
         port = self.maml['header'].get('output_live_port')
-        print(f'outlive opened to {port}')
+        
         if port:
             self.printer.set_port( port)
             self.printer.live.open_port()

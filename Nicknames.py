@@ -13,12 +13,12 @@ class Nicknames():
        
         i = 0 
         for key, value in dictionary.items():
-            #print(key, value, 'keyval')
+            #
             if len(search) < 0:
                 return default
             if key == search[i]:
                 if type(value) == type({}):
-                    #print('type is dict', 'calling rec', search[1:], value)
+                    #
                     return self.get_key_rec(search[1:], value, default)
                 else:
                     return value
@@ -45,7 +45,7 @@ class Nicknames():
        
         # load nicknames into bag now that all dollars are replaced
     
-       # print(maml['nicknames'], 'nicknames')
+       # 
        
     
     def replace_dollar_with_nicknames(self, phrase, maml, config_item, bag, name):
@@ -61,11 +61,11 @@ class Nicknames():
         i = 0 
         for note_str in notes[0]:
             replacements = re.findall(r'\$([a-zA-Z0-9_\.]+)', note_str)
-            print('replacements', replacements)
+            
             for replacement in replacements:
                 if replacement in bag:
                     notes[0][i] =  note_str.replace(f'${replacement}', bag[replacement])
-                    print(note_str, 'note_str')
+                    
                 else:
                     raise Exception(f'nickname {replacement} not found in bag, try adding it to an item above this one')
             i +=1

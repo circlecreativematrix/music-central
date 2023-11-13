@@ -44,7 +44,7 @@ def test_handle_file():
     data = printer.load_yaml('./data/maml_out.yaml')
     printer.run_command_return_output_file  = MagicMock(return_value=data)
     nbef = printer.handle_file(config["fornof.mamlsocket"],maml_phrase_item['phrases']['phrase.mamlsocket.1'], 'name')
-    print(nbef, 'nbef')
+    
     assert nbef['notes'] != None
 
 #@pytest.mark.skip(reason="no way of currently testing this")
