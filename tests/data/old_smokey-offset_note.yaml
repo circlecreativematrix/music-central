@@ -59,7 +59,7 @@ phrases:
         ^0 0:18/8
         "          
       ] # base case
-    output_live: true
+    output_live: false
     output_midi: "midi\\phrase.offset.smokey_offsets.1.mid"
     output_nbef: "nbef\\phrase.offset.working.1.yaml"
 

@@ -40,7 +40,7 @@ phrases:
       note_type: number # letter?
       beat_type: quantized # or relative_ms for easier generation ? 
       notes: ["%2 a4 c e %3 c e g c2 _ %2 a4 c e %3 c e g c5" ] # base case
-    output_live: true
+    output_live: false
     output_midi: "midi\\phrase.note_beat.1.mid"
     output_nbef: "nbef\\phrase.note_beat.working.1.yaml"
 

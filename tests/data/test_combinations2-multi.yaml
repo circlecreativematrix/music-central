@@ -48,7 +48,7 @@ combinations:
     type: combinations_phrases
     output_midi: "midi\\combo.sample4.mid"
     output_nbef: "nbef\\combo.sample4.yaml"
-    output_live: true
+    output_live: false
     list:
       - name: combo.sample3
       - name: phrase.mamlsocket.2
