@@ -25,16 +25,18 @@ phrases:
     type: fornof.mamlsocket
     output_live: true
     track: 0 
-    input:  |
-      this=5aaaabbbbaaaabbbbaaaabbbbaaaabbbb//A
-      this this
+    input:
+      notes:  |
+        this=5aaaabbbbaaaabbbbaaaabbbbaaaabbbb//A
+        this this
 
    phrase.mamlsocket.2:
     type: fornof.mamlsocket
     output_live: true
     track: 3 
-    input:  |
-      this=4songheresongtheresongeverywheresong//P
-      this
+    input:
+      notes:  |
+        this=4songheresongtheresongeverywheresong//P
+        this
 
 combinations: []

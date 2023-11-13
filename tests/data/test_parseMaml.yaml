@@ -29,9 +29,10 @@ phrases:
     type: fornof.mamlsocket
     output_midi: "midi\\phrase.maml21.mid"
     output_nbef: "nbef\\phrase.maml21.yaml"
-    input:  |
-      this=5aaaabbbb//A
-      this
+    input: 
+      notes: |
+        this=5aaaabbbb//A
+        this
 
 
 combinations: 

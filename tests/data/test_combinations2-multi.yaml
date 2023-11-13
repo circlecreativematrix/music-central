@@ -22,15 +22,17 @@ phrases:
 
   phrase.mamlsocket.1:
     type: fornof.mamlsocket
-    input:  |
-      this=5aaaabbbbaaaabbbbaaaabbbbaaaabbbb//A
-      this
+    input:
+      notes:  |
+        this=5aaaabbbbaaaabbbbaaaabbbbaaaabbbb//A
+        this
 
   phrase.mamlsocket.2:
     type: fornof.mamlsocket
-    input:  |
-      this=5aaafaffaaafaffaafaabbaafbbaaaafffaffaab//APHPHPHAHAAPP
-      this
+    input: 
+      notes: |
+        this=5aaafaffaaafaffaafaabbaafbbaaaafffaffaab//APHPHPHAHAAPP
+        this
 
 # rule: combo must be defined before current combo. 
 combinations: 

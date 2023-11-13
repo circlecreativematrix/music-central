@@ -13,19 +13,19 @@ header:
 nicknames:
   notes:
   - name: "hooligan"
-    value: "1 1 1 1"
+    value: "6 6 6 6"
     comment: "this is for hooligans"
   - name: "scale"
     value: "0 1 1 1 1 $hooligan"
-  beats: 
-  - name: "eighth"
+  beats:
+  - name: "e"
     value: "1/8"
   - name: "quarter"
     value: "1/4"
   - name: "multiarray"
-    value: "1/8 $quarter $eighth 1/4 1/8 1/4 1/8 1/4"
+    value: "1/8 $quarter $e 1/4 1/8 1/4 1/8 1/4"
     comment: not sure bout this one , maybe once everything is working
-  scales: 
+  scales:
   - name: "flipped"
     value:     {
                 6: 0,
@@ -62,7 +62,7 @@ phrases:
       # " 0:1/8 0 1 1:1/4 3 -1:1/1 0:1/8 -1 1 1 -1:1/1 
       note_type: number # letter?
       beat_type: quantized # or relative_ms for easier generation ? 
-      notes: ["0 1 1 1 1 1 1 1 1 ^0 0 %2 ^h1 0 ^h2  0 ^h3 0 ^h4   %2 0 ^h5 0 ^h6 0 ^h7 0  "] # base case
+      notes: ["$scale 0 1 1 1 1 1 1 1 ^0 0 %2 ^h1 0 ^h2  0 ^h3 0 ^h4   %2 0 ^h5 0 ^h6 0 ^h7 0  "] # base case
     output_live: true
     output_midi: "midi\\phrase.offset.chords_letters_offset_keys.1.mid"
     output_nbef: "nbef\\phrase.offset.working.1.yaml"

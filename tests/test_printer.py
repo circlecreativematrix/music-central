@@ -43,7 +43,7 @@ def test_handle_file():
     maml_phrase_item = printer.load_yaml(maml_path)
     data = printer.load_yaml('./data/maml_out.yaml')
     printer.run_command_return_output_file  = MagicMock(return_value=data)
-    nbef = printer.handle_file(config["fornof.mamlsocket"],maml_phrase_item['phrases']['phrase.mamlsocket.1'])
+    nbef = printer.handle_file(config["fornof.mamlsocket"],maml_phrase_item['phrases']['phrase.mamlsocket.1'], 'name')
     print(nbef, 'nbef')
     assert nbef['notes'] != None
 
@@ -63,7 +63,7 @@ def test_handle_maml_phrases_file():
     config = printer.load_yaml("./config/config.yaml")
 
     maml_phrase_item= parser.maml
-    nbef = printer.handle_file(config["fornof.mamlsocket"],maml_phrase_item['phrases']['phrase.mamlsocket.1'])
+    nbef = printer.handle_file(config["fornof.mamlsocket"],maml_phrase_item['phrases']['phrase.mamlsocket.1'], 'name')
     assert nbef['notes'] != None
 
 @pytest.mark.skip(reason="slows down tests, but works if unskipped")
@@ -77,14 +77,14 @@ def test_mid_file_read_to_nbef():
     parser = ParseMaml("./data/test_mid_type.yaml")
     parser.fill_vars_with_nbef()
     mid_nbef = parser.printer.load_yaml("..\\..\\savenbef\\phrase.midi.working.1.yaml")
-    assert mid_nbef['notes'] > 0 
+    assert len(mid_nbef['notes']) > 0 
 
 #@pytest.mark.skip(reason="slows down tests, but works if unskipped")
 def test_mid_file_read_to_nbef():
     parser = ParseMaml("./data/test_nbef_flatfile.yaml")
     parser.fill_vars_with_nbef()
     mid_nbef = parser.printer.load_yaml("..\\..\\savenbef\\phrase.nbef.yaml")
-    assert mid_nbef['notes'] > 0 
+    assert len(mid_nbef['notes']) > 0 
 
 #@pytest.mark.slow
 def test_combo_phrases():

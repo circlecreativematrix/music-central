@@ -99,7 +99,7 @@ class Combinations():
             name = combo['name']
             if bag.get(name) is None:
                 self.add_combo_to_bag_key(combo, combination_nbef, bag, name)
-            self.printer.feature_fun(combo, maml, bag, name)
+            self.printer.after_parse_features(combo, maml, bag, name,port)
         self.printer.play()
         while len(self.printer.tracks_playing) > 0:
             time.sleep(1)

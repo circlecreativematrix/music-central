@@ -16,6 +16,8 @@ import yaml
 import os
 import shlex
 from threading import Thread
+
+from Nicknames import Nicknames
 class console():
     @staticmethod
     def log( *data):
@@ -45,6 +47,7 @@ class Printer():
         tempo = 60
         self.midi = MidiHolder(track_count, tempo )
         self.live = MidiLive()
+        self.nickname = Nicknames()
         self.port = None
         self.can_play = False
         self.tracks_playing = []
@@ -121,24 +124,27 @@ class Printer():
             shutil.copyfile(source_path, destination_path)
             print("Binary file copied successfully!")
         except FileNotFoundError:
-            print("Error: One or both of the file paths are invalid.")
+            raise Exception("Error: One or both of the file paths are invalid."+ source_path + destination_path)
 
-    def write_input_to_input_file(self,input_file,config_item, maml_phrase_item):
+    def write_input_to_input_file(self,input_file,config_item, maml_phrase_item, name):
         #    self.write_input_to_input_file(input_file, maml_phrase_item['input'], config_item['input_body_type'])
         input_type = config_item['input_body_type']
-        input_key = config_item['input_body_key']
+        input_key =  config_item['input_body_key']
+        print(input_key, 'input_key', config_item['input_body_key'])
+        if not input_key:
+            raise Exception(f'input_key {input_key} not found in phrase {name}')
         
         
         if input_type == "text":
-            input_from_maml = maml_phrase_item['input']
+            input_from_maml = self.nickname.get_key(input_key,maml_phrase_item)
             #print(input_from_maml, 'what is this type? ' ,type(input_from_maml))
             with open(input_file, 'w') as file:
                 file.write(input_from_maml)
         elif input_type == "mid":
-           input_from_maml = maml_phrase_item[input_key]
+           input_from_maml = self.nickname.get_key(input_key,maml_phrase_item)
            self.copy_binary_file( input_from_maml, input_file)
         elif input_type == "yaml":
-            input_from_maml = maml_phrase_item[input_key]
+            input_from_maml = self.nickname.get_key(input_key,maml_phrase_item)
             with open(input_file, 'w') as file:
                 file.write(yaml.dump(input_from_maml))
         else:
@@ -150,10 +156,17 @@ class Printer():
             self.exists_or_add_path(input_file)
             self.touch_file(input_file)
 
-    def run_command_return_output_file(self, command, output_file):
+    def run_command_return_output_file(self, command, output_file, name):
         nbef_data = None
         cmd = command
-        subprocess.run(cmd, shell=True)
+        test=None
+       
+        test = subprocess.run(cmd, shell=False, stderr=subprocess.PIPE)
+        if test.stderr:
+            print(test.stderr.decode('utf-8').replace('\r\n', '\n'), f'^^ above is from outside of music-central: {name}')
+            raise Exception('command error(See above)')
+        
+
         with open(output_file,'r') as file:
             print('reading', output_file)
             nbef_data = file.read()
@@ -163,15 +176,15 @@ class Printer():
          with open(phrase['path']) as file: 
               return yaml.safe_load(file.read()) 
          
-    def handle_file(self, config_item, maml_phrase_item):
+    def handle_file(self, config_item, maml_phrase_item, name):
         path = config_item['path'] # does thsi have quotes when replaced/
         output_file = config_item['output_file'].replace("$PATH", path).replace('\\\\', "\\")
         input_file = config_item['input_file'].replace("$PATH", path).replace('\\\\', "\\")
         self.add_folder_file_if_not_exists(output_file)
         self.add_folder_file_if_not_exists(input_file)
-        self.write_input_to_input_file(input_file, config_item,maml_phrase_item)
+        self.write_input_to_input_file(input_file, config_item,maml_phrase_item, name)
         command = config_item['call'].replace("$PATH", path).replace("$INPUT_FILE", input_file).replace("$OUTPUT_FILE", output_file)
-        result = self.run_command_return_output_file( command, output_file)
+        result = self.run_command_return_output_file( command, output_file, name)
         return result
     @DeprecationWarning
     def file_run_and_open_notes(self):
@@ -186,7 +199,7 @@ class Printer():
             return yaml.safe_load(nbef_data)
     
 
-    def handle_live(self, start_time, velocity, time_ms,track, midi_num, type_onoff):
+    def handle_live(self, start_time, velocity, time_ms,track, midi_num, type_onoff,):
        
         #self.live.open_port()
     
@@ -194,10 +207,10 @@ class Printer():
         if velocity == 0:
             type_onoff = 'note_off'
         if time_ms-current_time <= 0:
-            self.live.send(track, type_onoff,int(midi_num),100)
+            self.live.send(track, type_onoff,int(midi_num),velocity or 100)
         else:
             time.sleep(time_ms-current_time)
-            self.live.send(track, type_onoff,int(midi_num),100)
+            self.live.send(track, type_onoff,int(midi_num),velocity or 100)
             
     def get_note_details(self,generated, notebeat ):
         if generated['note_type'] == "midi":
@@ -312,8 +325,10 @@ class Printer():
             print(f'saved {name} to {path}')
             self.clear()
 
-    def feature_fun(self, phrase,maml,bag, name):
+    def after_parse_features(self, phrase,maml,bag, name, port_path):
         if phrase.get('output_live', None):  
+            if not port_path:
+                raise Exception('header section needs to have port to output live, e.g: output_live_port: "IAC_DRIVER b1 2"')
             track = phrase.get('track', 0)
             print(bag[name], 'name baggy')
             thread_live = Thread(target=self.play_wait_live, args=[bag[name], track ])

@@ -35,10 +35,11 @@ phrases:
     type: fornof.mamlsocket
     output_midi: "midi\\phrase.sample2.mid"
     output_nbef: "nbef\\phrase.sample2.yaml"
-    input: |
-      this=c4aabaabaaababaoboaaa//AAPAAH
-      is=4abcdefg//APPA 
-      cool=4abcdef//PPAPA
-      this is cool cool is this
+    input:
+      notes: |
+        this=c4aabaabaaababaoboaaa//AAPAAH
+        is=4abcdefg//APPA 
+        cool=4abcdef//PPAPA
+        this is cool cool is this
 
 combinations: []
