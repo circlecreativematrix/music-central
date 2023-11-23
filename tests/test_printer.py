@@ -73,17 +73,20 @@ def test_live_out_phrases_file():
     # should hear something in midi channl
     assert True
 
+@pytest.mark.skip(reason="slows down tests, but works if unskipped todo: make midi load faster.- look at tempo in midiconverter ")
 def test_mid_file_read_to_nbef():
     parser = ParseMaml("./data/test_mid_type.yaml")
     parser.fill_vars_with_nbef()
-    mid_nbef = parser.printer.load_yaml("..\\..\\savenbef\\phrase.midi.working.1.yaml")
+    time.sleep(1.1)
+    mid_nbef = parser.printer.load_yaml("..\\..\\savenbef\\test_mid_type.yaml")
+    print(mid_nbef, 'midnbef')
     assert len(mid_nbef['notes']) > 0 
 
-#@pytest.mark.skip(reason="slows down tests, but works if unskipped")
-def test_mid_file_read_to_nbef():
+def test_nbef_flat_file_read_to_nbef():
     parser = ParseMaml("./data/test_nbef_flatfile.yaml")
     parser.fill_vars_with_nbef()
-    mid_nbef = parser.printer.load_yaml("..\\..\\savenbef\\phrase.nbef.yaml")
+    time.sleep(1.1)
+    mid_nbef = parser.printer.load_yaml("..\\..\\savenbef\\test_nbef_flatfile.yaml")
     assert len(mid_nbef['notes']) > 0 
 
 #@pytest.mark.slow

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  (check console.log, it plays the midi file in the browser, todo: make this react)
+  <br/>
+  (checkbox : output_live, save midi file ,save nbef file) 
+  <br/>
+  (text area syntax highlighted for yaml) <br/>
+  (this could be simplified to cards with dropdowns and buttons for each thing)<br/>
+  (todo: make a drawing of the ui )
+  <br/>
+  (buttons: play, stop, save midi, save nbef )
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ=="></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jzz"></script>   
+    <script src="https://cdn.jsdelivr.net/npm/jzz-midi-smf"></script>
+    <script>
+//         hljs.highlightAll();
+  
+//       const highlightedCode = hljs.highlight(
+//   data,
+//   { language: 'yaml' }
+// ).value
+//console.log(highlightedCode)
+var data = '\r\ndetails: \r\n  author: Robert Fornof\r\n  version: 1.0.1\r\n  song_name: Beautiful Butterfly\r\n  description: My first techno song with music-central.\r\nheader:\r\n  tempo : 60\r\n  key: C3\r\n  type: harmonic_minor\r\n  save_path: "C:/projects/music-user-reform/save"\r\n  output_live_port: "IAC_DRIVER b1 2"\r\nnicknames:\r\n  notes:\r\n  - name: "base1"\r\n    value: "1:1/8 _ _ _"\r\n    comment: "this is base"\r\n  - name: "vivaldi.32"\r\n    value: "0:1/32 0 0 0 0 0 0 0"\r\n  - name: "vivaldi.01"\r\n    value: "8:1/8 2 0 0 -1:1/16 -1 4:3/8"\r\n  - name: "vivaldi.02"\r\n    value: "0:1/16 -1 -1:1/8 0 0 -1:1/16 -1 4:3/8"\r\n  - name: "vivaldi.03"\r\n    value: "0:1/16 -1 -1:1/8 1:1/16 1 -1:1/8 -1 -1 -2 -2 3"\r\n  - name: "vivaldi.04"\r\n    value: "2 0 0 -1:1/16 -1 4:3/8"\r\n  - name: "b22.0"\r\n    value: "4 0 0 0 _ -4 0 0 0 _ 6 0 0 0 _ -6 0 0 0"\r\n  - name: "b22.1"\r\n    value: "0 0 0 1 -1 0 1 1 1 -3 0 0 0 0 0 0 "\r\n  - name: "b22.2"\r\n    value: "$b22.1 $b22.0 $b22.0"\r\n  - name: "epic.1"\r\n    value: "!!0 0:1/8 ^v50 ^v100,10 $b22.2 $b22.2 ^-4 0:1/8 $b22.2 $b22.2 ^0 -1:1/4 -1 1 1:1/1 \r\n              !!0 ^5 0:1/4  ^v50 ^v100,10 $b22.2 $b22.2\r\n              !!0 ^-7 0:1/2  ^v10 ^v100,30 $b22.2"\r\n  - name: "roar.1"\r\n    value: "^v127 %2 -2 2 2  _ ^v70,8 0 0 2:1/8 -1 -1:1/4 0 0:1/4"\r\n  - name: "roar.2"\r\n    value: "0:1/8 -1 -1 3 0:1/4 0 2 0 0 -1:1/8 -1 0 0 0:1/2"\r\n  - name: "roar.3"\r\n    value: "^v127 %2 -2 2 2 ^v80 _ ^v127,8 0 0 2:1/8 -1 -1:1/4 0 0:1/2"\r\n  - name: "roar.4"\r\n    value: "0:1/8 -1 -1 3 0:1/4 0 2 0 0 -1:1/8 -1 0 0 0:1/2"\r\n  - name: "roar.5combined"\r\n    value: "$roar.1 $roar.2 $roar.3 $roar.4"   \r\n  - name: "old_smokey"\r\n    value: " 0:1/4 \r\n        ^3 0 2 2 \r\n        ^3 3:6/8 -2:6/8 \r\n        ^1 _:1/4 _:1/4 -2:1/4 \r\n        ^2 0 1 1 \r\n        ^4 -1:12/8 \r\n        ^0 0:1/4 \r\n        ^7 0 2 2\r\n        ^-7 0:6/8\r\n        ^1 -3:6/8\r\n        ^-2 _:1/4 _:1/4 1:1/4\r\n        ^-1 1 -1 -1 \r\n        ^0 0:18/8\r\n         0:1/4 \r\n        0 2 2 \r\n        3:6/8 -2:6/8 \r\n        _:1/4 _:1/4 -2:1/4 \r\n        0 1 1 \r\n        -1:12/8 \r\n        ^0 0:1/4 \r\n        0 2 2\r\n        0:6/8\r\n        -3:6/8\r\n        _:1/4 _:1/4 1:1/4\r\n        1 -1 -1 \r\n        ^0 0:18/8\r\n        "    \r\n  beats: \r\n  - name: "eighth"\r\n    value: "1/8"\r\n  - name: "quarter"\r\n    value: "1/4"\r\n  - name: "multiarray"\r\n    value: "1/8 $quarter $eighth 1/4 1/8 1/4 1/8 1/4"\r\n    comment: not sure bout this one , maybe once everything is working\r\n  scales: \r\n  - name: "flipped"\r\n    value:     {\r\n                7: 0,\r\n                6: 2,\r\n                5: 2 * 2,\r\n                4: 2 * 2 + 1,\r\n                3: 2 * 3 + 1,\r\n                2: 2 * 4 + 1,\r\n                1: 2 * 5 + 1,\r\n                0: 2 * 5 + 1 * 2\r\n            } \r\nphrases:\r\n   phrase.note_offset.1:\r\n    type: fornof.offset\r\n    input: \r\n      type: major\r\n      start_note: C4\r\n      scale_type: major\r\n      nicknames:\r\n        scales:\r\n          flipped:     {\r\n                7: 0,\r\n                6: 2,\r\n                5: 2 * 2,\r\n                4: 2 * 2 + 1,\r\n                3: 2 * 3 + 1,\r\n                2: 2 * 4 + 1,\r\n                1: 2 * 5 + 1,\r\n                0: 2 * 5 + 1 * 2\r\n            } \r\n\r\n      tempo: 60\r\n      track: 0\r\n      # " 0:1/8 0 1 1:1/4 3 -1:1/1 0:1/8 -1 1 1 -1:1/1 \r\n      note_type: number # letter?\r\n      beat_type: quantized # or relative_ms for easier generation ? \r\n      notes: [ \r\n                "^0", " _ _ $roar.5combined",\r\n                " ^0 2 2 2:1/8 2 -2 2 _ -2 _ 2",\r\n               "!!0", "^-5 $roar.5combined _ _" ,\r\n               " ^0 -2:1/4 -2 -2 1 -2 1 -2 1"\r\n        \r\n        \r\n              ] # base case\r\n    output_live: true\r\n    output_midi: "midi/output_smokey6_minor.mid"\r\n    output_nbef: "nbef/perform_techno.yaml" # todo : find signal on/off on here\r\n\r\n   phrase.note_offset.2:\r\n    type: fornof.offset\r\n    input: \r\n      type: offset\r\n      start_note: c4\r\n      scale_type: major\r\n      tempo: 60\r\n      track: 0\r\n      # " 0:1/8 0 1 1:1/4 3 -1:1/1 0:1/8 -1 1 1 -1:1/1 \r\n      note_type: number # letter?\r\n      beat_type: quantized # or relative_ms for easier generation ? \r\n      notes: ["^v10 ^v100,10 0:1/4 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 ^-3 1 0 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 ^0 1 0 0 0 0 0 0 1"] # base case\r\n    output_live: false\r\n    output_midi: "midi/output_offset.mid"\r\n    output_nbef: "nbef/test_converter_offset.yaml"\r\n\r\n\r\ncombinations: []\r\n  # - name: "combo.sample3"\r\n  #   type: combinations_phrases\r\n  #   output_live: false\r\n  #   list:\r\n  #     - name: phrase.mamlsocket.1\r\n  #     - name: phrase.mamlsocket.2\r\n  #     - name: phrase.mamlsocket.1\r\n\r\n  # - name: "combo.sample4"\r\n  #   type: combinations_phrases\r\n  #   output_midi: "midi\\\\combo.sample4.mid"\r\n  #   output_nbef: "nbef\\\\combo.sample4.yaml"\r\n  #   output_live: false\r\n  #   list:\r\n  #     - name: combo.sample3\r\n  #     - name: phrase.mamlsocket.2\r\n  #     - name: phrase.mamlsocket.1\r\n';
+
+var config = {
+  method: 'post',
+  url: 'http://localhost:8888/',
+  headers: { 
+    'Content-Type': 'text/plain'
+  },
+  responseType: 'arraybuffer',
+  data : data
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+  var midiout = JZZ().openMidiOut();
+var data = response.data//.toString("binary")
+// data can be String, Buffer, ArrayBuffer, Uint8Array or Int8Array
+console.log('stuff', data)
+var smf = new JZZ.MIDI.SMF(data);
+var player = smf.player();
+
+player.connect(midiout);
+player.play();
+})
+.catch(function (error) {
+  console.log(error);
+});
+        // load a midi file in the browser
+
+
+    </script>
+</body>
+    
+</html>

@@ -18,28 +18,7 @@ import shlex
 from threading import Thread
 
 from Nicknames import Nicknames
-class console():
-    @staticmethod
-    def log( *data):
-        
-# load the json from http request using requests 
-# iterate over the notes
-#   todo first --> output notes to file (done)
-#   output notes to live midi (done)
-#  (done) nbef needs to be pancaked to a flat key value pairs first.
-# (done) also version needs to be at the top 
-# (done) type of notes need to be at the top - not in the f'in body of notes
-#   (done)goes for note_type, and beat_type
-# (done)   output notes to nbef
-# yay ! 
-# (done) next up , put things into configs - one for urls (handle files later), one for music similar to MamlReader. read in as yaml (done)
-# wahoo! 
-# todo: bug? - Is the nbef correct for output of one of these things? perhaps a pull down, and a flat_file read from one of these outputs - timing correct? 
-# todo : converter: put in a new type of converter for .mid that takes in a mid an outputs a nbef
-
-
-
-# need an array of entries maybe? for now , just stealing the notes
+    
 class Printer():
     def __init__(self):
     
@@ -62,9 +41,12 @@ class Printer():
         self.live.port = port
     def get_config_data(self,config_item, maml_phrase_item):
         input_body_key = config_item['input_body_key']
-        command_for_body = config_item['command_for_body']
-        yamlReplacement =  yaml.dump(maml_phrase_item['input'])
-        command_for_body.replace( f'${input_body_key}', yamlReplacement)
+        command_for_body = config_item.get('command_for_body')
+        yamlReplacement =  yaml.dump(maml_phrase_item[input_body_key])
+        if command_for_body:
+            command_for_body.replace( f'${input_body_key}', yamlReplacement)
+        else: 
+            command_for_body = yamlReplacement
         return command_for_body
   
 
@@ -73,7 +55,7 @@ class Printer():
         if config_item['input_file_type'] == 'json':
             config_item['headers']['content-type']= "application/json"
         if  config_item['input_file_type'] == 'yaml':
-             config_item['headers']['content-type'] = "application/yaml"
+             config_item['headers']['content-type'] = "application/x-yaml"
         verb = config_item.get("method", "GET")
         result = requests.request(
         verb,
@@ -110,9 +92,7 @@ class Printer():
            no_file = re.search(r'(.*/|.*\\)', input_path)
            input_path = no_file.groups(0)[0]
         if not os.path.exists(input_path):
-            os.makedirs(input_path)
-        else: 
-            
+            os.makedirs(input_path) 
 
 
     def touch_file(self, input_path):

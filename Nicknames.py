@@ -34,6 +34,7 @@ class Nicknames():
                         bag[nickname['name']] = nickname['value']
                         continue # we don't do replacements this for dicts
                     replacements = re.findall(r'\$([a-zA-Z0-9_\.]+)', str(val))
+
                     for replacement in replacements:
                         if replacement in bag:
                             nickname['value'] =  nickname['value'].replace(f'${replacement}', bag[replacement])
@@ -59,13 +60,14 @@ class Nicknames():
         else: 
             raise Exception(f'input_body_key {config_item["input_body_key"]} not found in phrase {name}')
         i = 0 
-        for note_str in notes[0]:
+        while i < len(notes[0]):
+            note_str = notes[0][i]
             replacements = re.findall(r'\$([a-zA-Z0-9_\.]+)', note_str)
-            
             for replacement in replacements:
                 if replacement in bag:
-                    notes[0][i] =  note_str.replace(f'${replacement}', bag[replacement])
-                    
+                    print('replacement', replacement)
+                    notes[0][i] =  notes[0][i].replace(f'${replacement}', bag[replacement])
+                    print(notes[0][i],note_str, 'is it set?')
                 else:
                     raise Exception(f'nickname {replacement} not found in bag, try adding it to an item above this one')
             i +=1

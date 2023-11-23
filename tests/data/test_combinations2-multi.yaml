@@ -35,24 +35,6 @@ phrases:
         this
 
 # rule: combo must be defined before current combo. 
-combinations: 
-  - name: "combo.sample3"
-    type: combinations_phrases
-    output_live: false
-    list:
-      - name: phrase.mamlsocket.1
-      - name: phrase.mamlsocket.2
-      - name: phrase.mamlsocket.1
-
-  - name: "combo.sample4"
-    type: combinations_phrases
-    output_midi: "midi\\combo.sample4.mid"
-    output_nbef: "nbef\\combo.sample4.yaml"
-    output_live: false
-    list:
-      - name: combo.sample3
-      - name: phrase.mamlsocket.2
-      - name: phrase.mamlsocket.1
   # combo.sample4:
   #   type: combinations 
   #   output_midi: "midi\\combo.sample4.mid"

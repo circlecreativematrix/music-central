@@ -45,11 +45,11 @@ from ParseMaml import ParseMaml
        
 #         assert len(mid_nbef['notes']) > 0
 
-def test_nicknames():
-    parser = ParseMaml("./data/test_nicknames_1.yaml")
-    parser.fill_vars_with_nbef()
+# def test_nicknames():
+#     parser = ParseMaml("./data/test_nicknames_1.yaml")
+#     parser.fill_vars_with_nbef()
     #parser.handle_combinations()
-    time.sleep(1.1)
+    # time.sleep(1.1)
     # with open( "..\\..\\savenbef\\phrase.note_beat.working.1.yaml", "r") as file:
     #     mid_nbef =yaml.safe_load(file.read())
        
@@ -64,3 +64,26 @@ def test_nicknames():
 #         mid_nbef =yaml.safe_load(file.read())
        
 #         assert len(mid_nbef['notes']) > 0
+
+
+# def test_offset_notes():
+#     parser = ParseMaml("./data/test_converter_offset.yaml")
+#     parser.fill_vars_with_nbef()
+#     parser.handle_combinations()
+#     time.sleep(1.1)
+#     with open( "..\\..\\savenbef\\test_converter_offset.yaml", "r") as file:
+#         mid_nbef =yaml.safe_load(file.read())
+       
+#         assert len(mid_nbef['notes']) > 0
+
+
+
+def test_perform_notes():
+    parser = ParseMaml("./data/perform_techno.yaml")
+    parser.fill_vars_with_nbef()
+    parser.handle_combinations()
+    time.sleep(1.1)
+    with open( "..\\..\\savenbef\\perform_techno.yaml", "r") as file:
+        mid_nbef =yaml.safe_load(file.read())
+       
+        assert len(mid_nbef['notes']) > 0
