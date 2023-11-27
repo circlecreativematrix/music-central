@@ -51,7 +51,7 @@ fornof.note_beat:
 
 fornof.offset:
   type: url                                                                                                                                                                                                     
-  url: http://localhost:6881/nbef
+  url: http://converter-offset-service/nbef #http://localhost:6881/nbef
   method: POST
   headers: {}
   input_body_key: input # this is what key to paste in

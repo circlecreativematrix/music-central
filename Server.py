@@ -17,16 +17,13 @@ class MainHandler(tornado.web.RequestHandler):
         yaml_in = yaml.safe_load(self.request.body)
         print(yaml_in['details']['author'])
         # I promise I will use an sqlite database for user data/configs in the future
-        parser = ParseMamlRequestResponse(yaml_in, "./tmp/")
+        parser = ParseMamlRequestResponse(yaml_in, "/tmp/")
         # this begs for a worker pool with a ticket uuid up front and a sqlite db
         # long requests will have to do for now.
        
         parser.fill_vars_with_nbef()
         ## combinations, include eventually
         if parser.printer.final_path:
-            
-           ## todo , create a player for nbef.6555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555
-           # ++++++++++++++++++++++++++++++++++++++++++++              55555555
             with open(parser.printer.final_path, 'rb') as file:
                 self.set_header("Content-Type", "audio/midi")
                 self.set_status(200)

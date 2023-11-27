@@ -9,7 +9,7 @@ COPY ./*.py /app/
 
 # Copy the public folder to the container
 COPY ./public /app/public
-
+COPY ./config /app/config
 # Copy the requirements.txt file to the container
 COPY ./requirements.txt /app/
 
