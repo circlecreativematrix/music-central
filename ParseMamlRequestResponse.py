@@ -24,7 +24,7 @@ class ParseMamlRequestResponse(ParseMaml):
 
     def fill_vars_with_nbef(self):
 
-        #port = self.maml['header'].get('output_live_port')
+        #port = self.maml.get("header", {}).get('output_live_port')
         
         #if port:
         #    self.printer.set_port( port)

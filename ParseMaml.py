@@ -27,7 +27,7 @@ class ParseMaml:
 
     def fill_vars_with_nbef(self):
 
-        port = self.maml['header'].get('output_live_port')
+        port = self.maml.get('header', {}).get('output_live_port')
         
         if port:
             self.printer.set_port( port)
@@ -48,7 +48,7 @@ class ParseMaml:
             self.printer.after_parse_features(phrase, self.maml, self.bag, name, port)
         self.printer.play()
         while len(self.printer.tracks_playing) > 0:
-                time.sleep(.1)
+                time.sleep(.01)
         self.printer.stop_clean()
          #maml, configs, bag, printer)
         

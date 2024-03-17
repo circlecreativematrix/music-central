@@ -1,0 +1,97 @@
+
+details: 
+  author: Robert Fornof
+  version: 1.0.1
+  song_name: Try to catch the dream
+  description: this is my song with lyrics and music central 
+header:
+  tempo : 67.5
+  key: C3
+  type: major
+  save_path: "C:/projects/music-user-reform/save"
+  output_live_port: "IAC_DRIVER b1 2"
+nicknames:
+  notes:
+  - name: "sah"
+    value: "%2:1/4 0 2 2 0:1/8 -1 -1 -1 -1:1/4 ^0"
+
+  beats: 
+  - name: "eighth"
+    value: "1/8"
+  - name: "quarter"
+    value: "1/4"
+  - name: "multiarray"
+    value: "1/8 $quarter $eighth 1/4 1/8 1/4 1/8 1/4"
+    comment: not sure bout this one , maybe once everything is working
+  scales: 
+  - name: "flipped"
+    value:     {
+                7: 0,
+                6: 2,
+                5: 2 * 2,
+                4: 2 * 2 + 1,
+                3: 2 * 3 + 1,
+                2: 2 * 4 + 1,
+                1: 2 * 5 + 1,
+                0: 2 * 5 + 1 * 2
+            } 
+phrases:
+   phrase.note_offset.1:
+    type: fornof.offset
+    input: 
+      start_note: C4
+      scale_type: major
+      nicknames:
+        scales:
+          flipped:     {
+                7: 0,
+                6: 2,
+                5: 2 * 2,
+                4: 2 * 2 + 1,
+                3: 2 * 3 + 1,
+                2: 2 * 4 + 1,
+                1: 2 * 5 + 1,
+                0: 2 * 5 + 1 * 2
+            } 
+
+      tempo: 60
+      # " 0:1/8 0 1 1:1/4 3 -1:1/1 0:1/8 -1 1 1 -1:1/1 
+      note_type: number # letter?
+      beat_type: quantized # or relative_ms for easier generation ? 
+      notes: ["!F2 $sah
+                !G2 $sah
+                !A2 $sah
+                !B2 $sah
+                !C3 $sah
+                !D3 $sah
+                !E3 $sah
+                !F3 $sah
+                !G3 $sah
+                !A3 $sah
+                !B3 $sah
+                !C4 $sah
+                !D4 $sah
+                !E4 $sah
+                !E4 $sah
+                !D4 $sah
+                !C3 $sah
+                !B3 $sah
+                !A3 $sah
+                !G3 $sah
+                !F3 $sah
+                !E3 $sah
+                !D3 $sah
+                !C2 $sah
+                !B2 $sah
+                !A2 $sah
+                !G2 $sah
+                !F2 $sah"
+    
+        ]
+  
+    output_live: false # ^4 $chorus.2 ^3 $chorus.2 ^-1 $chorus.2 ^0:1/8 $chorus.2
+    output_midi: "midi/practice_sah.mid"
+    output_nbef: "nbef/practice_sah.yaml" # todo : find signal on/off on here
+
+
+combinations: []

@@ -5,10 +5,10 @@ class Combinations():
         pass
 
     def add_to_bag(self, name, maml, bag, combination_nbef):
-        if maml['combinations'].get(name) is None:
+        if maml.get('combinations', {}).get(name) is None:
             raise Exception('cannot find', name)
         
-        for item in maml['combinations'][name]['list']:
+        for item in maml.get('combinations', {})[name]['list']:
             to_add= bag.get(item['name'])
             if to_add is None:
                 self.add_to_bag(item['name'], maml)
@@ -76,7 +76,7 @@ class Combinations():
 
     def handle(self, maml, configs, bag, printer):
         self.printer = printer
-        port = maml['header'].get('output_live_port')
+        port = maml.get("header", {}).get('output_live_port')
         
         if port:
             self.printer.set_port( port)
@@ -95,7 +95,7 @@ class Combinations():
             # output_midi
 
         combination_nbef = []
-        for combo in maml['combinations']:
+        for combo in maml.get('combinations', {}):
             name = combo['name']
             if bag.get(name) is None:
                 self.add_combo_to_bag_key(combo, combination_nbef, bag, name)

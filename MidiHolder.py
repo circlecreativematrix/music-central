@@ -7,8 +7,8 @@ import re
 class MidiHolder:
     def __init__(self, num_tracks=1, tempo=120):
         self.tempo = tempo
-        self.track_time = []
-        time_to_place_add_tempo = 0
+        self.track_time = {}
+        self.time_to_place_add_tempo = 0
         self.ppq = 960
 
         self.mid = MIDIFile(
@@ -19,10 +19,17 @@ class MidiHolder:
             file_format=1,
             ticks_per_quarternote=self.ppq,
             eventtime_is_ticks=True)
+        self.track_time[0] = 0
+        self.track_time[1] = 0 
+        self.create_tracks(num_tracks)
 
-        for i in range(0, num_tracks):
-            self.track_time.append(0)
-            self.mid.addTempo(i, time_to_place_add_tempo, tempo)
+    def create_tracks(self, num_tracks):
+        i = len(self.mid.tracks)
+        while len(self.mid.tracks) <= num_tracks:
+            self.mid.tracks.append(midiutil.MidiFile.MIDITrack(True, False))
+            self.track_time[i] = 0 
+            self.mid.addTempo(i, self.time_to_place_add_tempo, self.tempo)
+            i+=1
 
     def add_name(self, track_name, track_number, insert_time=0):
         self.mid.addTrackName(track_number, insert_time, track_name)
@@ -55,6 +62,8 @@ class MidiHolder:
             raise Exception('-4 midi not implemented yet as a flag.')
             return
         if midi_type == 'note_on':
+            if len(self.mid.tracks) < track:
+                self.create_tracks(track)
             self.mid.tracks[track].eventList.append(
                 midiutil.MidiFile.NoteOn(channel, note_midi, dur_ticks, self.track_time[channel], velocity))
             self.track_time[channel] += dur_ticks

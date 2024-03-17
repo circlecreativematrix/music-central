@@ -30,6 +30,7 @@ class Printer():
         self.port = None
         self.can_play = False
         self.tracks_playing = []
+        self.seen_track_yet = set()
         #self.maml = self.load_yaml('./arrangements/examples/example_1.yaml') # hardcoded
         # 
 
@@ -194,7 +195,7 @@ class Printer():
             
     def get_note_details(self,generated, notebeat ):
         if generated['note_type'] == "midi":
-          
+            
             return { "velocity": notebeat['velocity'], "midi": notebeat['midi'], "track": notebeat.get('track', 0) }
         else:
             raise Exception(f'unsupported note type {generated["note_type"]}')
@@ -234,13 +235,14 @@ class Printer():
                 nbef_note_output.append({'midi': int(note['midi']), 'velocity': note['velocity'], 'time_ms': beat['time_ms']*1000, 'track': note['track']})
             if to_file:
                 #add_note_on_off(self, channel, midi_type,note_midi, dur_sec, velocity = 22 )
-                self.midi.add_note_on_off(track,beat['signal'],note['midi'], beat['time_ms'],note['velocity']) # ischord?
+                self.midi.add_note_on_off(note['track'],beat['signal'],note['midi'], beat['time_ms'],note['velocity']) # ischord?
             if to_live:
                 if not self.live.port :
                      self.live.port = self.port
                      self.live.open_port()
                 #def handle_live(self, start_time, velocity, time_ms,track, midi_num)
-                self.handle_live(start_time, note['velocity'], beat['time_ms'], track  or note['track'], note['midi'], beat['signal'])
+               
+                self.handle_live(start_time, note['velocity'], beat['time_ms'], note.get('track', track), note['midi'], beat['signal'])
                 #
         if to_nbef: 
            return self.format_nbef("time_ms","midi", generated['tempo'] , nbef_note_output), errors
@@ -255,22 +257,34 @@ class Printer():
             self.live.output_midi.close()
             self.live.open_once = False
         #
+    def sort_by_time(self, notes):
+        def get_time(element):  # this is for sorter
+            return element['time_ms']
+        notes.sort(key=get_time, reverse=False)
 
-    def play_wait_live(self, generated, track = 0 ):
+    def play_wait_live(self, generated, track = 0, notes = None ):
         marker = [True]
+        start_time = time.time()
         self.tracks_playing.append(marker)
         #self.can_play = True
         while self.can_play == False: 
              start_time = time.time()
              
              time.sleep(.01)
-
-        for notebeat in generated['notes']:
-           
+        notes_to_iterate_over = notes or generated['notes']
+        #self.sort_by_time(notes_to_iterate_over)
+      
+        i = 0
+        for notebeat in notes_to_iterate_over:
+            if notebeat['track'] not in self.seen_track_yet:
+                self.seen_track_yet.add(notebeat['track'])
+                thread_live = Thread(target=self.play_wait_live, args=[generated, notebeat['track'], generated['notes'][i:]])
+                thread_live.start()
+                continue 
             note = self.get_note_details(generated, notebeat)
             beat =  self.get_beat_details(generated, notebeat)
-            
-            self.handle_live(start_time,note['velocity'], beat['time_ms'], track-1  or note['track'], note['midi'], beat['signal'] )
+            self.handle_live(start_time,note['velocity'], beat['time_ms'], note.get("track", track), note['midi'], beat['signal'] )
+            i +=1
         self.tracks_playing.remove(marker)
 
     def save(self, name='./poc.mid'):
@@ -279,7 +293,7 @@ class Printer():
     def handle_output_nbef(self,phrase,maml,bag, name):
              
                 track = phrase.get('track', 0)
-                save_path = maml['header']['save_path']
+                save_path = maml.get("header", {})['save_path']
                 nbef_save_path = phrase.get('output_nbef')
                 path = save_path + nbef_save_path
                
@@ -293,7 +307,7 @@ class Printer():
     def handle_output_midi(self, phrase, maml, bag, name):
             
            # get header save path 
-            save_path = maml['header']['save_path']
+            save_path = maml.get("header", {})['save_path']
             # get path to save
             track = phrase.get('track', 0)
             midi_save = phrase.get('output_midi')
@@ -313,6 +327,7 @@ class Printer():
             
             thread_live = Thread(target=self.play_wait_live, args=[bag[name], track ])
             thread_live.start()
+            self.play()
 
         if phrase.get('output_midi', None):
             thread_midi = Thread(target= self.handle_output_midi, args = [phrase, maml, bag, name])

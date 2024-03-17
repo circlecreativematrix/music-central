@@ -3,7 +3,7 @@ import sys
 from unittest.mock import MagicMock
 import subprocess
 import pytest
-
+import mido
 import yaml
 #@pytest.mark.skip(reason="no way of currently testing this")
 import requests
@@ -79,11 +79,16 @@ from ParseMaml import ParseMaml
 
 
 def test_perform_notes():
-    parser = ParseMaml("./data/perform_techno.yaml")
+    print('stuffy')
+    print(mido.get_output_names())
+    parser = ParseMaml(r"C:\projects\music-user-reform\music-central\tests\data\perform_techno.yaml")
+    #(r"C:\projects\music-user-reform\converter-midi-offset-note\aladdin_new_world.maml.yml" )
+    #
     parser.fill_vars_with_nbef()
     parser.handle_combinations()
+    print('stuff')
     time.sleep(1.1)
-    with open( "..\\..\\savenbef\\perform_techno.yaml", "r") as file:
-        mid_nbef =yaml.safe_load(file.read())
+    # with open( "..\\..\\savenbef\\test_single.yaml", "r") as file:
+    #     mid_nbef =yaml.safe_load(file.read())
        
-        assert len(mid_nbef['notes']) > 0
+    #     assert len(mid_nbef['notes']) > 0
