@@ -12,24 +12,10 @@ header:
   save_path: "C:/projects/music-user-reform/save"
   output_live_port: "IAC_DRIVER b1 2"
 phrases:
-<<<<<<< c7b39c97aabd54b393f568707ca3e4f82cc07847
  phrase.nbef.1:
     type: fornof.nbef
     path: 'C:\projects\music-user-reform\converter-standard-note\nbef_out.yml'
     output_live: false
-=======
-#  phrase.nbef.1:
-#     type: fornof.nbef
-#     path: "C:\\projects\\music-user-reform\\converter-midi-offset-note\\aladdin_new_world.maml.nbef.yml"
-#     output_midi: "midi\\test_nbef_flatfile.yaml.mid"
-#     output_nbef: "nbef\\test_nbef_flatfile.yaml"
-#     output_live: true
-
-  phrase.standard.test:
-    type: fornof.nbef
-    path: 'C:\projects\music-user-reform\converter-standard-note\nbef_out.yml'
-    output_live: true
->>>>>>> b2e8fa1fc411d2f2b5b4ce65e2d2c3d3ced60768
     output_midi: "midi/standard_nbef_test.mid"
     output_nbef: "nbef/standard_nbef_test.yaml"
 
