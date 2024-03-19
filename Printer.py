@@ -204,7 +204,11 @@ class Printer():
             return { "velocity": notebeat['velocity'], "note": notebeat['note'], 
                     "track": notebeat.get('track', 0), "note_type": note_type}
         else:
+<<<<<<< c7b39c97aabd54b393f568707ca3e4f82cc07847
+            raise Exception(f'unsupported note type {note_type}')
+=======
             raise Exception(f'unsupported note type {type_in["note_type"]}')
+>>>>>>> b2e8fa1fc411d2f2b5b4ce65e2d2c3d3ced60768
         
     def get_beat_details(self,generated, notebeat ):
         beat_type = notebeat.get('beat_type', generated.get("beat_type", ""))
@@ -301,6 +305,11 @@ class Printer():
                 thread_live = Thread(target=self.play_wait_live, args=[generated, notebeat['track'], generated['notes'][i:]])
                 thread_live.start()
                 continue 
+            if notebeat.get('tempo'):
+                generated['tempo'] = notebeat['tempo']
+            if notebeat.get('note_type'):
+                generated['note_type'] = notebeat['note_type']
+            
             note = self.get_note_details(generated, notebeat)
             beat =  self.get_beat_details(generated, notebeat)
             self.handle_live(start_time,note['velocity'], beat['time_s'], note.get("track", track), note['midi'], beat['signal'] )
