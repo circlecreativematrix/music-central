@@ -5,10 +5,10 @@ class Combinations():
         pass
 
     def add_to_bag(self, name, maml, bag, combination_nbef):
-        if maml['combinations'].get(name) is None:
+        if maml.get('combinations', {}).get(name) is None:
             raise Exception('cannot find', name)
         
-        for item in maml['combinations'][name]['list']:
+        for item in maml.get('combinations', {})[name]['list']:
             to_add= bag.get(item['name'])
             if to_add is None:
                 self.add_to_bag(item['name'], maml)
@@ -37,7 +37,7 @@ class Combinations():
                     blobbed_output_nbef['midi_ppq'] = nbef['midi_ppq']
                     key_time = "time_tick"
                 if beat_type == "signal_ms":
-                    key_time = "time_ms"
+                    key_time = "time_s"
                 blobbed_output_nbef['beat_type'] = nbef['beat_type']
                 blobbed_output_nbef['note_type'] = nbef['note_type']
                 blobbed_output_nbef['notes'] = nbef['notes'].copy()
@@ -49,7 +49,7 @@ class Combinations():
                 raise Exception('cannot have different beat_types for shared combos, all beats must be same type (future case to convert here)')
        
             last_note_time_offset = blobbed_output_nbef['notes'][-1][key_time]
-            # get last note time_ms, 
+            # get last note time_s, 
             # add that time to each note in the next array
 
             for note in nbef['notes']:
@@ -76,7 +76,7 @@ class Combinations():
 
     def handle(self, maml, configs, bag, printer):
         self.printer = printer
-        port = maml['header'].get('output_live_port')
+        port = maml.get("header", {}).get('output_live_port')
         
         if port:
             self.printer.set_port( port)
@@ -95,7 +95,7 @@ class Combinations():
             # output_midi
 
         combination_nbef = []
-        for combo in maml['combinations']:
+        for combo in maml.get('combinations', {}):
             name = combo['name']
             if bag.get(name) is None:
                 self.add_combo_to_bag_key(combo, combination_nbef, bag, name)

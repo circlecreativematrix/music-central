@@ -3,322 +3,322 @@ note_type: midi
 notes:
 - midi: 69
   signal: note_on
-  time_ms: 0
+  time_s: 0
   track: 0
   velocity: 80
 - midi: 69
   signal: note_off
-  time_ms: 0.23958333333333334
+  time_s: 0.23958333333333334
   track: 0
   velocity: 80
 - midi: 69
   signal: note_on
-  time_ms: 0.23958333333333334
+  time_s: 0.23958333333333334
   track: 0
   velocity: 80
 - midi: 69
   signal: note_off
-  time_ms: 0.4791666666666667
+  time_s: 0.4791666666666667
   track: 0
   velocity: 80
 - midi: 69
   signal: note_on
-  time_ms: 0.4791666666666667
+  time_s: 0.4791666666666667
   track: 0
   velocity: 80
 - midi: 69
   signal: note_off
-  time_ms: 0.7197916666666667
+  time_s: 0.7197916666666667
   track: 0
   velocity: 80
 - midi: 69
   signal: note_on
-  time_ms: 0.7197916666666667
+  time_s: 0.7197916666666667
   track: 0
   velocity: 80
 - midi: 69
   signal: note_off
-  time_ms: 0.9593750000000001
+  time_s: 0.9593750000000001
   track: 0
   velocity: 80
 - midi: 71
   signal: note_on
-  time_ms: 0.9593750000000001
+  time_s: 0.9593750000000001
   track: 0
   velocity: 80
 - midi: 71
   signal: note_off
-  time_ms: 1.2000000000000002
+  time_s: 1.2000000000000002
   track: 0
   velocity: 80
 - midi: 71
   signal: note_on
-  time_ms: 1.2000000000000002
+  time_s: 1.2000000000000002
   track: 0
   velocity: 80
 - midi: 71
   signal: note_off
-  time_ms: 1.4395833333333334
+  time_s: 1.4395833333333334
   track: 0
   velocity: 80
 - midi: 71
   signal: note_on
-  time_ms: 1.4395833333333334
+  time_s: 1.4395833333333334
   track: 0
   velocity: 80
 - midi: 71
   signal: note_off
-  time_ms: 1.6791666666666667
+  time_s: 1.6791666666666667
   track: 0
   velocity: 80
 - midi: 71
   signal: note_on
-  time_ms: 1.6791666666666667
+  time_s: 1.6791666666666667
   track: 0
   velocity: 80
 - midi: 71
   signal: note_off
-  time_ms: 1.9197916666666668
+  time_s: 1.9197916666666668
   track: 0
   velocity: 80
 - midi: 69
   signal: note_on
-  time_ms: 1.9197916666666668
+  time_s: 1.9197916666666668
   track: 0
   velocity: 80
 - midi: 69
   signal: note_off
-  time_ms: 2.1593750000000003
+  time_s: 2.1593750000000003
   track: 0
   velocity: 80
 - midi: 69
   signal: note_on
-  time_ms: 2.1593750000000003
+  time_s: 2.1593750000000003
   track: 0
   velocity: 80
 - midi: 69
   signal: note_off
-  time_ms: 2.4000000000000004
+  time_s: 2.4000000000000004
   track: 0
   velocity: 80
 - midi: 69
   signal: note_on
-  time_ms: 2.4000000000000004
+  time_s: 2.4000000000000004
   track: 0
   velocity: 80
 - midi: 69
   signal: note_off
-  time_ms: 2.639583333333334
+  time_s: 2.639583333333334
   track: 0
   velocity: 80
 - midi: 69
   signal: note_on
-  time_ms: 2.639583333333334
+  time_s: 2.639583333333334
   track: 0
   velocity: 80
 - midi: 69
   signal: note_off
-  time_ms: 2.8791666666666673
+  time_s: 2.8791666666666673
   track: 0
   velocity: 80
 - midi: 71
   signal: note_on
-  time_ms: 2.8791666666666673
+  time_s: 2.8791666666666673
   track: 0
   velocity: 80
 - midi: 71
   signal: note_off
-  time_ms: 3.1197916666666674
+  time_s: 3.1197916666666674
   track: 0
   velocity: 80
 - midi: 71
   signal: note_on
-  time_ms: 3.1197916666666674
+  time_s: 3.1197916666666674
   track: 0
   velocity: 80
 - midi: 71
   signal: note_off
-  time_ms: 3.359375000000001
+  time_s: 3.359375000000001
   track: 0
   velocity: 80
 - midi: 71
   signal: note_on
-  time_ms: 3.359375000000001
+  time_s: 3.359375000000001
   track: 0
   velocity: 80
 - midi: 71
   signal: note_off
-  time_ms: 3.600000000000001
+  time_s: 3.600000000000001
   track: 0
   velocity: 80
 - midi: 71
   signal: note_on
-  time_ms: 3.600000000000001
+  time_s: 3.600000000000001
   track: 0
   velocity: 80
 - midi: 71
   signal: note_off
-  time_ms: 3.8395833333333345
+  time_s: 3.8395833333333345
   track: 0
   velocity: 80
 - midi: 69
   signal: note_on
-  time_ms: 3.8395833333333345
+  time_s: 3.8395833333333345
   track: 0
   velocity: 80
 - midi: 69
   signal: note_off
-  time_ms: 4.0791666666666675
+  time_s: 4.0791666666666675
   track: 0
   velocity: 80
 - midi: 69
   signal: note_on
-  time_ms: 4.0791666666666675
+  time_s: 4.0791666666666675
   track: 0
   velocity: 80
 - midi: 69
   signal: note_off
-  time_ms: 4.319791666666667
+  time_s: 4.319791666666667
   track: 0
   velocity: 80
 - midi: 69
   signal: note_on
-  time_ms: 4.319791666666667
+  time_s: 4.319791666666667
   track: 0
   velocity: 80
 - midi: 69
   signal: note_off
-  time_ms: 4.559375
+  time_s: 4.559375
   track: 0
   velocity: 80
 - midi: 69
   signal: note_on
-  time_ms: 4.559375
+  time_s: 4.559375
   track: 0
   velocity: 80
 - midi: 69
   signal: note_off
-  time_ms: 4.8
+  time_s: 4.8
   track: 0
   velocity: 80
 - midi: 71
   signal: note_on
-  time_ms: 4.8
+  time_s: 4.8
   track: 0
   velocity: 80
 - midi: 71
   signal: note_off
-  time_ms: 5.039583333333333
+  time_s: 5.039583333333333
   track: 0
   velocity: 80
 - midi: 71
   signal: note_on
-  time_ms: 5.039583333333333
+  time_s: 5.039583333333333
   track: 0
   velocity: 80
 - midi: 71
   signal: note_off
-  time_ms: 5.279166666666666
+  time_s: 5.279166666666666
   track: 0
   velocity: 80
 - midi: 71
   signal: note_on
-  time_ms: 5.279166666666666
+  time_s: 5.279166666666666
   track: 0
   velocity: 80
 - midi: 71
   signal: note_off
-  time_ms: 5.5197916666666655
+  time_s: 5.5197916666666655
   track: 0
   velocity: 80
 - midi: 71
   signal: note_on
-  time_ms: 5.5197916666666655
+  time_s: 5.5197916666666655
   track: 0
   velocity: 80
 - midi: 71
   signal: note_off
-  time_ms: 5.759374999999999
+  time_s: 5.759374999999999
   track: 0
   velocity: 80
 - midi: 69
   signal: note_on
-  time_ms: 5.759374999999999
+  time_s: 5.759374999999999
   track: 0
   velocity: 80
 - midi: 69
   signal: note_off
-  time_ms: 5.998958333333332
+  time_s: 5.998958333333332
   track: 0
   velocity: 80
 - midi: 69
   signal: note_on
-  time_ms: 5.998958333333332
+  time_s: 5.998958333333332
   track: 0
   velocity: 80
 - midi: 69
   signal: note_off
-  time_ms: 6.239583333333331
+  time_s: 6.239583333333331
   track: 0
   velocity: 80
 - midi: 69
   signal: note_on
-  time_ms: 6.239583333333331
+  time_s: 6.239583333333331
   track: 0
   velocity: 80
 - midi: 69
   signal: note_off
-  time_ms: 6.479166666666664
+  time_s: 6.479166666666664
   track: 0
   velocity: 80
 - midi: 69
   signal: note_on
-  time_ms: 6.479166666666664
+  time_s: 6.479166666666664
   track: 0
   velocity: 80
 - midi: 69
   signal: note_off
-  time_ms: 6.719791666666664
+  time_s: 6.719791666666664
   track: 0
   velocity: 80
 - midi: 71
   signal: note_on
-  time_ms: 6.719791666666664
+  time_s: 6.719791666666664
   track: 0
   velocity: 80
 - midi: 71
   signal: note_off
-  time_ms: 6.959374999999997
+  time_s: 6.959374999999997
   track: 0
   velocity: 80
 - midi: 71
   signal: note_on
-  time_ms: 6.959374999999997
+  time_s: 6.959374999999997
   track: 0
   velocity: 80
 - midi: 71
   signal: note_off
-  time_ms: 7.199999999999997
+  time_s: 7.199999999999997
   track: 0
   velocity: 80
 - midi: 71
   signal: note_on
-  time_ms: 7.199999999999997
+  time_s: 7.199999999999997
   track: 0
   velocity: 80
 - midi: 71
   signal: note_off
-  time_ms: 7.43958333333333
+  time_s: 7.43958333333333
   track: 0
   velocity: 80
 - midi: 71
   signal: note_on
-  time_ms: 7.43958333333333
+  time_s: 7.43958333333333
   track: 0
   velocity: 80
 - midi: 71
   signal: note_off
-  time_ms: 7.679166666666663
+  time_s: 7.679166666666663
   track: 0
   velocity: 80
 tempo: 60

@@ -23,8 +23,8 @@ phrases:
    phrase.midi.1:
     type: fornof.mid
     path: "./data/song.mid"
-    output_midi: "midi\\phrase.midi.1.mid"
-    output_nbef: "nbef\\phrase.midi.working.1.yaml"
+    output_midi: "midi\\test_mid_type.mid"
+    output_nbef: "nbef\\test_mid_type.yaml"
 
 
 

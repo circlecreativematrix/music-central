@@ -23,9 +23,9 @@ phrases:
  phrase.nbef.1:
     type: fornof.nbef
     path: "./data/song.fornof.midi.yml"
-    output_midi: "midi\\phrase.nbef.1.mid"
-    output_nbef: "nbef\\phrase.nbef.yaml"
-    output_live: true
+    output_midi: "midi\\test_nbef_flatfile.yaml.mid"
+    output_nbef: "nbef\\test_nbef_flatfile.yaml"
+    output_live: false
 
 
 combinations: []

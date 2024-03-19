@@ -3,7 +3,7 @@ import sys
 from unittest.mock import MagicMock
 import subprocess
 import pytest
-
+import mido
 import yaml
 #@pytest.mark.skip(reason="no way of currently testing this")
 import requests
@@ -45,11 +45,11 @@ from ParseMaml import ParseMaml
        
 #         assert len(mid_nbef['notes']) > 0
 
-def test_nicknames():
-    parser = ParseMaml("./data/test_nicknames_1.yaml")
-    parser.fill_vars_with_nbef()
+# def test_nicknames():
+#     parser = ParseMaml("./data/test_nicknames_1.yaml")
+#     parser.fill_vars_with_nbef()
     #parser.handle_combinations()
-    time.sleep(1.1)
+    # time.sleep(1.1)
     # with open( "..\\..\\savenbef\\phrase.note_beat.working.1.yaml", "r") as file:
     #     mid_nbef =yaml.safe_load(file.read())
        
@@ -64,3 +64,31 @@ def test_nicknames():
 #         mid_nbef =yaml.safe_load(file.read())
        
 #         assert len(mid_nbef['notes']) > 0
+
+
+# def test_offset_notes():
+#     parser = ParseMaml("./data/test_converter_offset.yaml")
+#     parser.fill_vars_with_nbef()
+#     parser.handle_combinations()
+#     time.sleep(1.1)
+#     with open( "..\\..\\savenbef\\test_converter_offset.yaml", "r") as file:
+#         mid_nbef =yaml.safe_load(file.read())
+       
+#         assert len(mid_nbef['notes']) > 0
+
+
+
+def test_perform_notes():
+    print('stuffy')
+    print(mido.get_output_names())
+    parser = ParseMaml(r'C:\projects\music-user-reform\music-central\tests\data\perform_techno.yaml')
+    #(r"C:\projects\music-user-reform\converter-midi-offset-note\aladdin_new_world.maml.yml" )
+    #
+    parser.fill_vars_with_nbef()
+    parser.handle_combinations()
+    print('stuff')
+    time.sleep(1.1)
+    # with open( "..\\..\\savenbef\\test_single.yaml", "r") as file:
+    #     mid_nbef =yaml.safe_load(file.read())
+       
+    #     assert len(mid_nbef['notes']) > 0

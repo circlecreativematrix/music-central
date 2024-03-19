@@ -1,37 +1,34 @@
+from ParseMaml import ParseMaml
 import yaml
 import time
 from threading import Thread
 from Nicknames import Nicknames
-from Printer import Printer 
+from PrinterRequestResponse import PrinterRequestResponse as Printer 
 from Combinations import Combinations
-class ParseMaml:
+class ParseMamlRequestResponse(ParseMaml):
     '''
      This constructs yaml from maml path, config is hardcoded as I don't see this changing. 
      @ bag holds all the notes in nbef form for each phrase/ combination
     '''
-    def __init__(self, maml_path):
-        self.printer = Printer()
+    def __init__(self, maml_path, tmp_path = "/tmp/midiout/"):
+        self.printer = Printer(tmp_path)
         self.combinations = Combinations()
         self.nickname = Nicknames()
         if type(maml_path) == type({}):
             self.maml = maml_path
         else: 
             self.maml = self.printer.load_yaml(maml_path)
-        self.config= self.printer.load_yaml("./config/config.yaml") # hardcoded
+        self.config= self.printer.load_yaml("./config/config.yaml") # hardcoded, change based on user data? 
         self.bag = {}
-
-         
-
-    def handle_combinations(self):
-         self.combinations.handle(self.maml, self.config, self.bag, self.printer)
+       
 
     def fill_vars_with_nbef(self):
 
-        port = self.maml.get('header', {}).get('output_live_port')
+        #port = self.maml.get("header", {}).get('output_live_port')
         
-        if port:
-            self.printer.set_port( port)
-            self.printer.live.open_port()
+        #if port:
+        #    self.printer.set_port( port)
+        #    self.printer.live.open_port()
      
         for name, phrase in self.maml['phrases'].items(): 
             config_item = self.config[phrase['type']]
@@ -45,10 +42,17 @@ class ParseMaml:
                self.bag[name] = self.printer.handle_file(config_item, phrase, name)
             if config_item['type'] == 'nbef':
                 self.bag[name] = self.printer.handle_nbef_flatfile(phrase)
-            self.printer.after_parse_features(phrase, self.maml, self.bag, name, port)
+            # this is just a stint, I actually want query params to determine this or ACCEPT header
+            #if phrase.get('output_midi', None):
+            return self.printer.handle_output_midi( phrase, self.maml, self.bag, name)
+            # this does not include Combinations! so ... put into combinations if working.
+            #if phrase.get('output_nbef', None):
+            # else:
+            #     return self.printer.handle_output_nbef(phrase,self.maml, self.bag, name)
+                
         self.printer.play()
         while len(self.printer.tracks_playing) > 0:
-                time.sleep(.01)
+                time.sleep(.1)
         self.printer.stop_clean()
          #maml, configs, bag, printer)
         

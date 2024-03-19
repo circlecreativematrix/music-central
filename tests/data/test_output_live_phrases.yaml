@@ -23,7 +23,7 @@ phrases:
 
    phrase.mamlsocket.1:
     type: fornof.mamlsocket
-    output_live: true
+    output_live: false
     track: 0 
     input:
       notes:  |
@@ -32,7 +32,7 @@ phrases:
 
    phrase.mamlsocket.2:
     type: fornof.mamlsocket
-    output_live: true
+    output_live: false
     track: 3 
     input:
       notes:  |

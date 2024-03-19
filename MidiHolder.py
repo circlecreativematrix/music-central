@@ -7,8 +7,8 @@ import re
 class MidiHolder:
     def __init__(self, num_tracks=1, tempo=120):
         self.tempo = tempo
-        self.track_time = []
-        time_to_place_add_tempo = 0
+        self.track_time = {}
+        self.time_to_place_add_tempo = 0
         self.ppq = 960
 
         self.mid = MIDIFile(
@@ -19,10 +19,18 @@ class MidiHolder:
             file_format=1,
             ticks_per_quarternote=self.ppq,
             eventtime_is_ticks=True)
-
-        for i in range(0, num_tracks):
-            self.track_time.append(0)
-            self.mid.addTempo(i, time_to_place_add_tempo, tempo)
+        self.track_time[0] = 0
+        self.track_time[1] = 0 
+        self.create_tracks(num_tracks)
+        self.mid.addTempo(0, self.time_to_place_add_tempo, self.tempo)
+    def create_tracks(self, num_tracks):
+        i = len(self.mid.tracks)
+        while len(self.mid.tracks)  <= num_tracks:
+            self.mid.tracks.append(midiutil.MidiFile.MIDITrack(True, False))
+            self.add_tempo( self.tempo, i, insert_time=0)
+            self.track_time[i] = 0 
+            self.mid.numTracks = i
+            i+=1
 
     def add_name(self, track_name, track_number, insert_time=0):
         self.mid.addTrackName(track_number, insert_time, track_name)
@@ -55,7 +63,9 @@ class MidiHolder:
             raise Exception('-4 midi not implemented yet as a flag.')
             return
         if midi_type == 'note_on':
-            self.mid.tracks[track].eventList.append(
+            if len(self.mid.tracks) <= channel:
+                self.create_tracks(channel)
+            self.mid.tracks[channel].eventList.append(
                 midiutil.MidiFile.NoteOn(channel, note_midi, dur_ticks, self.track_time[channel], velocity))
             self.track_time[channel] += dur_ticks
         elif midi_type == 'note_off':
@@ -88,19 +98,41 @@ class MidiHolder:
                 midiutil.MidiFile.SysExEvent(self.track_time[channel], note_midi[0], note_midi[1], 0))
         elif midi_type == 'universal_system_exclusive_event':
             # def __init__(self, tick, realTime, sysExChannel, code, subcode,payload, insertion_order=0):
-            self.mid.tracks[track].eventList.append(midiutil.MidiFile.UniversalSysExEvent(
+            self.mid.tracks[track].MIDIEventList.append(midiutil.MidiFile.UniversalSysExEvent(
                 self.track_time[channel], note_midi[0], note_midi[1],note_midi[2], note_midi[3], note_midi[4], 0))
         else:
             raise Exception("midi type not implemented yet for track: " + str(track) + " "+ midi_type )
         # 
-
+    def writeEventMidiStream(self, track):
+        previous_event_tick = 0
+        for event in track.MIDIEventList:
+            track.MIDIdata += event.serialize(previous_event_tick)
+        
     def save(self, path):
         m = re.search(r'\.mid', path)
+        # tracks = self.mid.tracks.copy()
+        # self.mid.tracks = [self.mid.tracks.pop(0), self.mid.tracks.pop(0)]
+        # self.mid.numTracks = 2
+        # i = 0
+        #   origin = 10000000
+        # for _, val in self.track_time.items():
+        #     if(val < origin ):
+        #         origin = val
+            # i+=1
+      
+        # for track in self.mid.tracks:
+        #     track.closeTrack()
+        #     track.processEventList()
+        #     track.MIDIEventList.sort(key=lambda event: (event.tick, event.sec_sort_order, event.insertion_order))
+        #     track.adjustTimeAndOrigin(origin, self.mid.adjust_origin)
+        #     self.writeEventMidiStream(track)    
         if not m:
             with open(path + "/out.mid", "wb") as output_file:
+                
                 self.mid.writeFile(output_file)
         else:
             with open(path, "wb") as output_file:
+                
                 self.mid.writeFile(output_file)
 
     def sec_to_ticks(self, seconds, tempo):
