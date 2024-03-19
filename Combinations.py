@@ -37,7 +37,7 @@ class Combinations():
                     blobbed_output_nbef['midi_ppq'] = nbef['midi_ppq']
                     key_time = "time_tick"
                 if beat_type == "signal_ms":
-                    key_time = "time_ms"
+                    key_time = "time_s"
                 blobbed_output_nbef['beat_type'] = nbef['beat_type']
                 blobbed_output_nbef['note_type'] = nbef['note_type']
                 blobbed_output_nbef['notes'] = nbef['notes'].copy()
@@ -49,7 +49,7 @@ class Combinations():
                 raise Exception('cannot have different beat_types for shared combos, all beats must be same type (future case to convert here)')
        
             last_note_time_offset = blobbed_output_nbef['notes'][-1][key_time]
-            # get last note time_ms, 
+            # get last note time_s, 
             # add that time to each note in the next array
 
             for note in nbef['notes']:

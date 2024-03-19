@@ -8,14 +8,14 @@
         {
             "midi": 64,
             "velocity": 100,
-            "time_ms": 0,
+            "time_s": 0,
             "signal": "note_on",
             "track": 0
         },
         {
             "midi": 64,
             "velocity": 100,
-            "time_ms": 500,
+            "time_s": 500,
             "signal": "note_off",
             "track": 0
         }

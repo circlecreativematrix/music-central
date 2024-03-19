@@ -12,29 +12,19 @@ header:
   save_path: "C:/projects/music-user-reform/save"
   output_live_port: "IAC_DRIVER b1 2"
 phrases:
- phrase.nbef.1:
-    type: fornof.nbef
-    path: "C:\\projects\\music-user-reform\\converter-midi-offset-note\\aladdin_new_world.maml.nbef.yml"
-    output_midi: "midi\\test_nbef_flatfile.yaml.mid"
-    output_nbef: "nbef\\test_nbef_flatfile.yaml"
-    output_live: true
+#  phrase.nbef.1:
+#     type: fornof.nbef
+#     path: "C:\\projects\\music-user-reform\\converter-midi-offset-note\\aladdin_new_world.maml.nbef.yml"
+#     output_midi: "midi\\test_nbef_flatfile.yaml.mid"
+#     output_nbef: "nbef\\test_nbef_flatfile.yaml"
+#     output_live: true
 
-  # phrase.note_offset.test:
-  #   input:
-  #     beat_type: quantized
-  #     note_type: number
-  #     notes:
-  #     - 0:1/16 0 0 0 1 0 0 0 1 0 0 1 0 0 -1 0 0 -1 0 0 -1 0 0 0 1 0 0 0 -1 0 0 0 1 0 0 0 -1 0 0 0 1 0 0 0
-      
-  #     scale_type: major
-  #     start_note: c4
-  #     tempo: 120
-  #     track: 0
-  #     type: offset
-  #   type: fornof.offset
-  #   output_live: true
-  #   output_midi: "midi/phonymns.mid"
-   # output_nbef: "nbef/phonymns.yaml"
+  phrase.standard.test:
+    type: fornof.nbef
+    path: 'C:\projects\music-user-reform\converter-standard-note\nbef_out.yml'
+    output_live: true
+    output_midi: "midi/standard_nbef_test.mid"
+    output_nbef: "nbef/standard_nbef_test.yaml"
 
 
 # combinations: []

@@ -49,15 +49,26 @@ fornof.note_beat:
 #   call: "$PATH\\..\\venv\\Scripts\\python.exe $PATH\\index.py --input $INPUT_FILE --output $OUTPUT_FILE"  # $PATH\\..\\venv\\Scripts\\activate.bat;python 
 #   output_file: "$PATH\\song.fornof.offset.output.yml"
 
-fornof.offset:
-  type: url                                                                                                                                                                                                     
-  url: http://converter-offset-service/nbef #http://localhost:6881/nbef
-  method: POST
-  headers: {}
-  input_body_key: input # this is what key to paste in
+fornof.standard: 
+  type: file
+  input_body_key: input
   input_body_type: yaml
-  input_file_type: yaml # yaml, json, text -- this is what type it is , only yaml to start.
+  input_file: $PATH\\song.fornof.standard.yaml # this is what will be populated with string or yaml dumps. 
+  input_file_type: yaml # yaml, json 
+  path: 'C:\projects\music-user-reform\converter-standard-note'
+  call: "$PATH\\standard-converter.exe --input $INPUT_FILE --output $OUTPUT_FILE"  # $PATH\\..\\venv\\Scripts\\activate.bat;python 
+  output_file: "$PATH\\song.fornof.standard.output.yml"
 
+
+fornof.offset: 
+  type: file
+  input_body_key: input
+  input_body_type: yaml
+  input_file: $PATH\\song.fornof.offset.yaml # this is what will be populated with string or yaml dumps. 
+  input_file_type: yaml # yaml, json 
+  path: "C:\\projects\\music-user-reform\\converter-offset" 
+  call: "$PATH\\..\\venv\\Scripts\\python.exe $PATH\\index.py --input $INPUT_FILE --output $OUTPUT_FILE"  # $PATH\\..\\venv\\Scripts\\activate.bat;python 
+  output_file: "$PATH\\song.fornof.offset.output.yml"
 
 fornof.nbef: 
   type: nbef
