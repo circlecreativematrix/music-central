@@ -138,7 +138,7 @@ class MidiHolder:
     def sec_to_ticks(self, seconds, tempo):
 
         seconds_per_tick = (60000 / (tempo * self.mid.ticks_per_quarternote)) / 1000
-        return seconds / seconds_per_tick * 1.0
+        return float(seconds) / seconds_per_tick * 1.0
         # mido.second2tick(seconds,ticks_per_beat=480,tempo = tempo)#hardcoded
 
     def dur_to_ticks(self, dur, tempo):

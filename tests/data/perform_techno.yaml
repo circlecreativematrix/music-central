@@ -12,12 +12,40 @@ header:
   save_path: "C:/projects/music-user-reform/save"
   output_live_port: "IAC_DRIVER b1 2"
 phrases:
- phrase.nbef.1:
-    type: fornof.nbef
-    path: 'C:\projects\music-user-reform\converter-standard-note\nbef_out.yml'
+ phrase.nbef.1: #should also have a path to it
+    type: fornof.standard
+    input:
+      notes:
+        key_type:major,key_note:C4,tempo:60
+        note:A3_G4_E5,time:P+1/4,dur:1/4
+        note:0_3_5,time:P+1/4
+        note:0,time:P,vol:0
+        note:P-3_P+3_P+4,time:P+1/16,dur:1/16
+        note:0,time:P,vol:0
+        note:P-3_P+3_P+4,time:P+1/16,dur:1/16
+        note:0,time:P,vol:0
+        note:P-3_P+3_P+4,time:P+1/16,dur:1/16
+        note:0,time:P,vol:0
+        note:P-3_P+3_P+4,time:P+1/8,dur:1/16
+        key_type:major,key_note:D4,tempo:60
+        time:P+3/4
+        note:0,time:P,vol:0
+        note:P_P+3_P+2,time:P+1/16,dur:1/16
+        time:P+3/4
+        note:0,time:P,vol:0
+        note:P_P+3_P+2,time:P+1/16,dur:1/16
+        time:P+3/4
+        note:0,time:P,vol:0
+        note:P_P+3_P+2,time:P+1/16,dur:1/16
+        time:P+3/4
+        note:0,time:P,vol:0
+        note:P_P+3_P+2,time:P+1/16,dur:1/16
+        
+      
+
     output_live: false
-    output_midi: "midi/standard_nbef_test.mid"
-    output_nbef: "nbef/standard_nbef_test.yaml"
+    output_midi: "midi/standard_testing_fresh.mid"
+    output_nbef: "nbef/standard_nbef_test_Fresh.yaml"
 
 
 # combinations: []
