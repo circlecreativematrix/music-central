@@ -38,6 +38,12 @@ class MidiHolder:
     def add_tempo(self, tempo, track_number, insert_time=0):
         self.mid.addTempo(track_number, insert_time, tempo)
 
+    def add_text(self, text, track_number, dur_sec=0):
+        #dur_ticks =  #int(self.sec_to_ticks(dur_sec, self.tempo))
+        if(track_number < 0):
+            track_number = 0
+        self.mid.addText(track_number, int(dur_sec), text)
+
     def add_note(self, channel, note_midi, dur_sec, velocity=64, is_chord=False):
         track = channel
         dur_ticks = int(self.sec_to_ticks(dur_sec, self.tempo))

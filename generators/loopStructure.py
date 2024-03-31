@@ -1,4 +1,5 @@
 import re
+import math
 class Constants:
     def __init__(self):
         self.notes = ['C', 'D', 'E', 'F', 'G', 'A', 'B']
@@ -67,12 +68,14 @@ class LoopSah:
             if incrementing:
                 if(note == "C"):
                     num +=1
-                result.append(f"!{note}{num} $sah")
+                result.append(f"key_note:{note}{num}")
+                result.append(f"$sah")
                 note = self.notes[(self.notes.index(note)+1)%len(self.notes)]
             else:
-                if(note == "C"):
+                if(note == "B"):
                     num -=1
-                result.append(f"!{note}{num} $sah")
+                result.append(f"key_note:{note}{num}")
+                result.append(f"$sah")
                 note = self.notes[(self.notes.index(note)-1)%len(self.notes)]
            
         return result

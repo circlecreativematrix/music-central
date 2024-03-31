@@ -5,47 +5,104 @@
 #   song_name: Beautiful Butterfly
 #   description: My first techno song with music-central.
 header:
-  pass: true
-  tempo : 60
-  key: C3
-  type: harmonic_minor
   save_path: "C:/projects/music-user-reform/save"
   output_live_port: "IAC_DRIVER b1 2"
+nicknames:
+  notes:
+  - name: "play"
+    value: "note:P|P+2|P+4,time:0.0,vol:122,dur:1/16
+            note:P-8,dur:0
+            note:P|P+2|P+4,time:0.0,vol:122,dur:1/16
+            note:P-3,dur:0
+            note:P|P+2|P+4,time:0.0,vol:122,dur:1/8
+            note:P|P+2|P+4,time:0.0,vol:122,dur:1/8
+            note:P-6,dur:0
+            note:P|P+2|P+4,time:0.0,vol:122,dur:1/8
+            note:P|P+2|P+4,time:0.0,vol:122,dur:1/8
+            note:P|P+2|P+4,time:0.0,vol:122,dur:3/8"
+  - name: "sah"
+    value: "note:0|2|4,time:0.0,vol:122,dur:3/8
+            note:4,time:P+1/8,,dur:1/8
+            note:P-1,time:P+1/8
+            note:P-1,time:P+1/8
+            note:P-1,time:P+1/8
+            note:P-1,time:P+1/8
+            time:P+1/8"
+  - name: "output"
+    value: " key_note:F2
+            $sah
+            key_note:G2
+            $sah
+            key_note:A2
+            $sah
+            key_note:B2
+            $sah
+            key_note:C3
+            $sah
+            key_note:D3
+            $sah
+            key_note:E3
+            $sah
+            key_note:F3
+            $sah
+            key_note:G3
+            $sah
+            key_note:A3
+            $sah
+            key_note:B3
+            $sah
+            key_note:C4
+            $sah
+            key_note:D4
+            $sah
+            key_note:E4
+            $sah
+            key_note:E4
+            $sah
+            key_note:D4
+            $sah
+            key_note:C4
+            $sah
+            key_note:B3
+            $sah
+            key_note:A3
+            $sah
+            key_note:G3
+            $sah
+            key_note:F3
+            $sah
+            key_note:E3
+            $sah
+            key_note:D3
+            $sah
+            key_note:C3
+            $sah
+            key_note:B2
+            $sah
+            key_note:A2
+            $sah
+            key_note:G2
+            $sah
+            key_note:F2
+            $sah"
 phrases:
- phrase.nbef.1: #should also have a path to it
+ phrase.standard.1: #should also have a path to it
     type: fornof.standard
     input:
       notes:
-        key_type:major,key_note:C4,tempo:60
-        note:A3_G4_E5,time:P+1/4,dur:1/4
-        note:0_3_5,time:P+1/4
-        note:0,time:P,vol:0
-        note:P-3_P+3_P+4,time:P+1/16,dur:1/16
-        note:0,time:P,vol:0
-        note:P-3_P+3_P+4,time:P+1/16,dur:1/16
-        note:0,time:P,vol:0
-        note:P-3_P+3_P+4,time:P+1/16,dur:1/16
-        note:0,time:P,vol:0
-        note:P-3_P+3_P+4,time:P+1/8,dur:1/16
-        key_type:major,key_note:D4,tempo:60
-        time:P+3/4
-        note:0,time:P,vol:0
-        note:P_P+3_P+2,time:P+1/16,dur:1/16
-        time:P+3/4
-        note:0,time:P,vol:0
-        note:P_P+3_P+2,time:P+1/16,dur:1/16
-        time:P+3/4
-        note:0,time:P,vol:0
-        note:P_P+3_P+2,time:P+1/16,dur:1/16
-        time:P+3/4
-        note:0,time:P,vol:0
-        note:P_P+3_P+2,time:P+1/16,dur:1/16
+        key_type:major,key_note:C4,tempo:60,time:0.0
+        note:0,dur:0
+        $output
+        note:0,dur:0
+        $play
+        note:0,time:P+1/1,vol:0
+      
         
       
 
     output_live: false
-    output_midi: "midi/standard_testing_fresh.mid"
-    output_nbef: "nbef/standard_nbef_test_Fresh.yaml"
+    output_midi: "midi/standard_testing_test_note_insert.mid"
+    output_nbef: "nbef/standard_nbef_test_note_insert.yaml"
 
 
 # combinations: []

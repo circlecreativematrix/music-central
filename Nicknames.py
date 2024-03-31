@@ -39,7 +39,8 @@ class Nicknames():
                         if replacement in bag:
                             nickname['value'] =  nickname['value'].replace(f'${replacement}', bag[replacement])
                         else:
-                            raise Exception(f'nickname {replacement} not found in bag, try adding it to an item above this one')
+                           pass
+                           # raise Exception(f'nickname {replacement} not found in bag, try adding it to an item above this one')
                         
                     bag[nickname['name']] = nickname['value']
                     
@@ -52,26 +53,49 @@ class Nicknames():
     def replace_dollar_with_nicknames(self, phrase, maml, config_item, bag, name):
         notes = None
         notes = []
+        key = "notes"
         # replace dollar signs with nicknames
         if config_item["input_body_key"] == 'notes':
             notes.append(phrase['notes'])
+            key = "notes"
         elif self.get_key(f'{config_item["input_body_key"]}.notes', phrase):
             notes.append(self.get_key(f'{config_item["input_body_key"]}.notes', phrase))
+            key = "input_body_key"
         else: 
             raise Exception(f'input_body_key {config_item["input_body_key"]} not found in phrase {name}')
         i = 0 
-        while i < len(notes[0]):
-            note_str = notes[0][i]
-            replacements = re.findall(r'\$([a-zA-Z0-9_\.]+)', note_str)
+        note_str = notes[0][i]
+        typer = "ARRAY"
+        length = len(notes[0])
+        if type(notes[0]) == type("str"):
+            note_str = notes[0]
+            typer = "STRING"
+            length = len(notes)
+        while i < length:
+          
+            replacements = re.findall(r'\$([a-zA-Z0-9_\.-]+)', note_str)
             for replacement in replacements:
                 if replacement in bag:
                     print('replacement', replacement)
-                    notes[0][i] =  notes[0][i].replace(f'${replacement}', bag[replacement])
-                    print(notes[0][i],note_str, 'is it set?')
+                    if typer == "STRING":
+                        # to solve later when there are more complexities
+                        notes[0] = notes[0].replace(f'${replacement}', bag[replacement],100)
+                        
+                        
+                        if key == "notes":
+                            phrase["notes"] = notes[0]
+                        else:
+                            phrase[config_item["input_body_key"]]["notes"] = notes[0]
+                        print(phrase, 'is it set?')
+                       
+                    else:
+                        notes[0][i] =  notes[0][i].replace(f'${replacement}', bag[replacement],100)
+                        print(phrase, 'is it set?')
+                        
                 else:
-                    raise Exception(f'nickname {replacement} not found in bag, try adding it to an item above this one')
+                    pass
+                    #raise Exception(f'nickname {replacement} not found in bag, try adding it to an item above this one')
             i +=1
-        return
         return phrase
    
     def handle_beat_nicknames(self, phrase):
