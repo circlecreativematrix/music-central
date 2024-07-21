@@ -1,4 +1,16 @@
 # config path shortcuts go here , then iterate over each call , input, output with those? 
+
+fornof.standard: 
+  type: file
+  input_body_key: input
+  input_body_type: yaml
+  input_file: $PATH\\song.fornof.standard.yaml # this is what will be populated with string or yaml dumps. 
+  input_file_type: yaml # yaml, json 
+  path: 'C:\projects\music-user-reform\converter-standard-note'
+  call: "$PATH\\standard-converter.exe --input $INPUT_FILE --output $OUTPUT_FILE"  # $PATH\\..\\venv\\Scripts\\activate.bat;python 
+  output_file: "$PATH\\song.fornof.standard.output.yml"
+
+
 fornof.gifts.url:
   type: url                                                                                                                                                                                                     
   url: http://localhost:3000/

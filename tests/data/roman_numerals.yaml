@@ -1,0 +1,23 @@
+# details:
+#   author: Robert Fornof
+#   version: 1.0.1
+#   song_name: Beautiful Butterfly
+#   description: My first techno song with music-central.
+header: # this should be optional
+  save_path: "C:\\projects\\music-user-reform\\save" # this should be optional
+nicknames:
+  notes:
+    - name: "output"
+      value:
+        "halfsteps:0,time:P+1/4,note:0
+        halfsteps:9,time:P+1/4,note:1
+        "
+    
+phrases:
+  phrase.standard.1: #should also have a path to it
+    type: fornof.standard
+    input:
+      notes: "tempo:60,key_type:major
+              $output"
+    output_midi: "midi/roman_numerals.mid"
+    output_nbef: "nbef/roman_numerals.yaml"

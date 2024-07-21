@@ -1,5 +1,4 @@
-
-# details: 
+# details:
 #   author: Robert Fornof
 #   version: 1.0.1
 #   song_name: Beautiful Butterfly
@@ -9,117 +8,176 @@ header:
   output_live_port: "IAC_DRIVER b1 2"
 nicknames:
   notes:
-  - name: "play"
-    value: "note:P|P+2|P+4,time:0.0,vol:122,dur:1/16
-            note:P-8,dur:0
-            note:P|P+2|P+4,time:0.0,vol:122,dur:1/16
-            note:P-3,dur:0
-            note:P|P+2|P+4,time:0.0,vol:122,dur:1/8
-            note:P|P+2|P+4,time:0.0,vol:122,dur:1/8
-            note:P-6,dur:0
-            note:P|P+2|P+4,time:0.0,vol:122,dur:1/8
-            note:P|P+2|P+4,time:0.0,vol:122,dur:1/8
-            note:P|P+2|P+4,time:0.0,vol:122,dur:3/8"
-  - name: "sah"
-    value: "note:0|2|4,time:0.0,vol:122,dur:3/8
-            note:4,time:P+1/8,,dur:1/8
-            note:P-1,time:P+1/8
-            note:P-1,time:P+1/8
-            note:P-1,time:P+1/8
-            note:P-1,time:P+1/8
-            time:P+1/8"
-  - name: "output"
-    value: " key_note:F2
-            $sah
-            key_note:G2
-            $sah
-            key_note:A2
-            $sah
-            key_note:B2
-            $sah
-            key_note:C3
-            $sah
-            key_note:D3
-            $sah
-            key_note:E3
-            $sah
-            key_note:F3
-            $sah
-            key_note:G3
-            $sah
-            key_note:A3
-            $sah
-            key_note:B3
-            $sah
-            key_note:C4
-            $sah
-            key_note:D4
-            $sah
-            key_note:E4
-            $sah
-            key_note:E4
-            $sah
-            key_note:D4
-            $sah
-            key_note:C4
-            $sah
-            key_note:B3
-            $sah
-            key_note:A3
-            $sah
-            key_note:G3
-            $sah
-            key_note:F3
-            $sah
-            key_note:E3
-            $sah
-            key_note:D3
-            $sah
-            key_note:C3
-            $sah
-            key_note:B2
-            $sah
-            key_note:A2
-            $sah
-            key_note:G2
-            $sah
-            key_note:F2
-            $sah"
+    - name: chords.1
+      value: "
+        note:$original_note-3,time:$time_16,dur:1/16
+        note:$original_note,time:$time_16
+        note:$original_note,time:$time_16
+        time:P+1/17,label:missing-time"
+    - name: thump.1
+      value: "
+        note:-7,time:P+1/4,dur:1/4,track:1
+        note:-7,time:P+1/4,dur:1/4,track:1
+        note:-7,time:P+1/4,dur:1/4,track:1
+        note:-7,time:P+1/4,dur:1/4,track:1"
+    - name: "play.1"
+      value: "$chords.1"
+    - name: "play.2"
+      value: "note:3,dur:0
+        $chords.2
+        note:5,dur:0
+        $chords.1
+        time:P+1/16
+        note:-3,dur:0
+        $chords.2
+        note:-1,time:P+1/8,vol:122,dur:1/8
+        note:0,time:P+1/8,vol:122,dur:3/8"
+    - name: "sah1"
+      value: "note:P+1|P+2|P+2,time:P+1/8,vol:122,dur:3/8
+        note:P,time:P+1/8,dur:1/8
+        note:P-1,time:P+1/8
+        note:P-1,time:P+1/8
+        note:P-1,time:P+1/8
+        note:P-1,time:P+1/8
+        time:P+1/8"
+    - name: "sah"
+      value: "note:P-1,dur:0,vol:0
+              $sah1"
+    - name: "output"
+      value: "key_note:F3
+        $sah
+        key_note:G3
+        $sah
+        key_note:A3
+        $sah
+        key_note:B3
+        $sah
+        key_note:C4
+        $sah
+        key_note:D4
+        $sah
+        key_note:E4
+        $sah
+        key_note:F4
+        $sah
+        key_note:G4
+        $sah
+        key_note:A4
+        $sah
+        key_note:B4
+        $sah
+        key_note:C5
+        $sah
+        key_note:D5
+        $sah
+        key_note:E5
+        $sah
+        key_note:E5
+        $sah
+        key_note:D5
+        $sah
+        key_note:C5
+        $sah
+        key_note:B4
+        $sah
+        key_note:A4
+        $sah
+        key_note:G4
+        $sah
+        key_note:F4
+        $sah
+        key_note:E4
+        $sah
+        key_note:D4
+        $sah
+        key_note:C4
+        $sah
+        key_note:B3
+        $sah
+        key_note:A3
+        $sah
+        key_note:G3
+        $sah
+        key_note:F3
+        $sah"
+    - name: "test-comments-notes"
+      value: " label:start
+        note:!some=0
+        note:$some,time:P+1/4,dur:1/4
+        note:$some,time:P+1/4,dur:1/4
+        time:$start
+        note:!some=3
+        note:$some,time:P+1/4,dur:1/4
+        note:$some,time:P+1/4,dur:1/4,comment:last
+        label:end
+        time:P+1/2
+        //label:break
+        insert:start|end
+        time:P+1/2
+        insert:start|end
+        time:P+1/2
+        insert:start|end
+        //label:break_end
+        //insert:break|break_end"
+    - name: "somethingg"
+      value: "        key_type:major,key_note:C4,tempo:60,time:0.0
+        key_note:C4
+        label:start
+        vol:127
+        note:!original_note=0:track:1
+        time:!time_16=P+1/16
+        vol:60|4
+        $play.1
+        $play.1
+        vol:120
+        note:!original_note=1#
+        time:!time_16=P+1/16
+        $play.1
+        note:!original_note=0
+        $play.1
+        note:!original_note=-4
+        $play.1
+        $play.1
+        note:!original_note=0
+        $play.1
+        $play.1
+        label:end_track_zero
+        time:$start
+        key_note:C4:track:1
+        vol:127
+        vol:60|5
+        $thump.1
+        vol:127|4
+        $thump.1
+        label:end_track_one
+        time:!time_16=P+1/16
+        insert:start|end_track_one"
+    
 phrases:
- phrase.standard.1: #should also have a path to it
+  phrase.standard.1: #should also have a path to it
     type: fornof.standard
     input:
-      notes:
-        key_type:major,key_note:C4,tempo:60,time:0.0
-        note:0,dur:0
-        $output
-        note:0,dur:0
-        $play
-        note:0,time:P+1/1,vol:0
-      
-        
-      
+      notes: "tempo:60,key_type:minor_harmonic
+              $output"
 
     output_live: false
-    output_midi: "midi/standard_testing_test_note_insert.mid"
-    output_nbef: "nbef/standard_nbef_test_note_insert.yaml"
-
-
+    output_midi: "midi/perform_techno.mid"
+    output_nbef: "nbef/perform_techno.yaml"
 # combinations: []
-  # - name: "combo.sample3"
-  #   type: combinations_phrases
-  #   output_live: false
-  #   list:
-  #     - name: phrase.mamlsocket.1
-  #     - name: phrase.mamlsocket.2
-  #     - name: phrase.mamlsocket.1
+# - name: "combo.sample3"
+#   type: combinations_phrases
+#   output_live: false
+#   list:
+#     - name: phrase.mamlsocket.1
+#     - name: phrase.mamlsocket.2
+#     - name: phrase.mamlsocket.1
 
-  # - name: "combo.sample4"
-  #   type: combinations_phrases
-  #   output_midi: "midi\\combo.sample4.mid"
-  #   output_nbef: "nbef\\combo.sample4.yaml"
-  #   output_live: false
-  #   list:
-  #     - name: combo.sample3
-  #     - name: phrase.mamlsocket.2
-  #     - name: phrase.mamlsocket.1
+# - name: "combo.sample4"
+#   type: combinations_phrases
+#   output_midi: "midi\\combo.sample4.mid"
+#   output_nbef: "nbef\\combo.sample4.yaml"
+#   output_live: false
+#   list:
+#     - name: combo.sample3
+#     - name: phrase.mamlsocket.2
+#     - name: phrase.mamlsocket.1

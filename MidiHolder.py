@@ -39,6 +39,8 @@ class MidiHolder:
         self.mid.addTempo(track_number, insert_time, tempo)
 
     def add_text(self, text, track_number, dur_sec=0):
+        return
+        # this is erroring out,and never really worked
         #dur_ticks =  #int(self.sec_to_ticks(dur_sec, self.tempo))
         if(track_number < 0):
             track_number = 0
