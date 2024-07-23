@@ -1,5 +1,5 @@
 header:
-    save_path: C:/projects/music-user-reform/save
+    save_path: /mnt/c/projects/music-user-reform/save/
 nicknames:
     notes:
         - name: header

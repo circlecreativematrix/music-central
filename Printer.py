@@ -139,9 +139,9 @@ class Printer():
 
     def run_command_return_output_file(self, command, output_file, name):
         nbef_data = None
-        cmd = command
+        cmd = shlex.split(command)
         test=None
-       
+
         test = subprocess.run(cmd, shell=False, stderr=subprocess.PIPE)
         if test.stderr:
             print(test.stderr.decode('utf-8').replace('\r\n', '\n'), f'^^ above is from outside of music-central: {name}')

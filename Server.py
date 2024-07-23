@@ -15,7 +15,7 @@ class MainHandler(tornado.web.RequestHandler):
         self.write("Hello, world")
     def post(self):
         yaml_in = yaml.safe_load(self.request.body)
-        print(yaml_in['details']['author'])
+        #print(yaml_in['details']['author'])
         # I promise I will use an sqlite database for user data/configs in the future
         parser = ParseMamlRequestResponse(yaml_in, "/tmp/")
         # this begs for a worker pool with a ticket uuid up front and a sqlite db

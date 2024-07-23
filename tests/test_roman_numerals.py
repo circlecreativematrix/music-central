@@ -9,11 +9,12 @@ from Printer import Printer
 from ParseMaml import ParseMaml
 
 def test_perform_notes():
-    print('stuffy')
+    
     #print(mido.get_output_names())
-
+    config = "./tests/config/config.yaml"
     #parser = ParseMaml('C:\\projects\\music-user-reform\\converter-standard-note\\maml_test.yml')
-    parser = ParseMaml("/mnt/c/projects/music-user-reform/converter-standard-note/maml_test.yml" )
+    maml_path = "/mnt/c/projects/music-user-reform/converter-standard-note/maml_test.yml"
+    parser = ParseMaml(maml_path, config )
     #(r"C:\projects\music-user-reform\converter-midi-offset-note\aladdin_new_world.maml.yml" )
     #
     parser.fill_vars_with_nbef()
