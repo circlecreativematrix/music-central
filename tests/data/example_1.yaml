@@ -1,45 +1,50 @@
-# header - tempo, key/starting note, name, author, song, description  
-# phrases - those work well, with type 
-# sentences - group of phrases
-# paragraphs - group of sentences
-# pages - group of paragraphs 
-# book - group of pages 
-# idea: have a "end here" on group sections that says to stop there and not process other groups, have a "solo" to play phrases ? 
-# idea : can I have each segment output to mid/nbef files? output_nbef: filepath , output_midi : filepath
-# idea , at anytime I can read in a nbef flat_file that will direct copy notes from that flat_file and add. 
-details: 
-  author: Robert Fornof
-  version: 1.0.1
-  song_name: Beautiful Butterfly
-  description: Wrote this out of necessity to build out a working song. 
+# details:
+#   author: Robert Fornof
+#   version: 1.0.1
+#   song_name: Beautiful Butterfly
+#   description: My first techno song with music-central.
 header:
-  tempo : 129
-  key: D3
-  type: harmonic_minor
-  save_path: "C:\\projects\\music-user-reform\\save"
+  save_path: "C:/projects/music-user-reform/save"
+  # output_live_port: "IAC_DRIVER b1 1"
+nicknames:
+  notes:
+    - name: "melody_1"
+      value: "note:0|P+4|P+4,time:P+1/8,dur:1/4,track:1,vol:80
+              note:3|P+4|P+4,time:P+1/32,dur:1/4,track:1,vol:80
+              note:4|P+4|P+4,time:P+1/32,dur:1/4,track:1,vol:80
+              note:0|P+4|P+4,time:P+1/4,dur:1/4,track:1,vol:80
+            note:0,time:P+1/32,dur:8/32,track:1,vol:50
+            time:P+1/4
+            "
+    
 phrases:
 
- phrase.sample1:
-    type: fornof.gifts.url
-    output_midi: "midi\\phrase.sample0.mid"
-    output_nbef: "nbef\\phrase.sample0.yaml"
-    input: [["E3", 1], [D3, 1.4], [C3, 4]]
-
- phrase.sample2:
-    type: fornof.gifts.url
-    output_midi: "midi\\phrase.sample1.mid"
-    output_nbef: "nbef\\phrase.sample1.yaml"
-    input:  [["E3", 3], [E3, 1.4], [E3, 4]]
-
- phrase.mamlsocket.1:
-    type: fornof.mamlsocket
-    output_midi: "midi\\phrase.sample2.mid"
-    output_nbef: "nbef\\phrase.sample2.yaml"
+  phrase.standard.1:
+    type: fornof.standard
     input:
-      notes: |
-        this=c4aabaabaaababaoboaaa//AAPAAH
-        is=4abcdefg//APPA 
-        cool=4abcdef//PPAPA
-        this is cool cool is this
+      notes: "tempo:60,key_note:C4,key_type:major
+            label:intro_1
+            $melody_1
+          "
 
-combinations: []
+    output_live: false
+    output_midi: "midi/stage_song.mid"
+    output_nbef: "nbef/stage_song.yaml"
+# combinations: []
+# - name: "combo.sample3"
+#   type: combinations_phrases
+#   output_live: false
+#   list:
+#     - name: phrase.mamlsocket.1
+#     - name: phrase.mamlsocket.2
+#     - name: phrase.mamlsocket.1
+
+# - name: "combo.sample4"
+#   type: combinations_phrases
+#   output_midi: "midi\\combo.sample4.mid"
+#   output_nbef: "nbef\\combo.sample4.yaml"
+#   output_live: false
+#   list:
+#     - name: combo.sample3
+#     - name: phrase.mamlsocket.2
+#     - name: phrase.mamlsocket.1

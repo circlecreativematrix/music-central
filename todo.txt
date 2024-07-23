@@ -1,3 +1,5 @@
+golang - standard note - turn off io needs to be assumed, not always explicit.
+
 make this into a python script so I can reuse MamlReader functions. 
 
 inputs: 

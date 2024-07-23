@@ -1,4 +1,5 @@
 import re
+import math
 class Constants:
     def __init__(self):
         self.notes = ['C', 'D', 'E', 'F', 'G', 'A', 'B']
@@ -8,8 +9,8 @@ class Constants:
         self.minor_mask =   [ 1,     0,  1,    1,   0,   1,    0,   1,   1,    0,   1,   0  ]
 class LoopSah:
     def main(self):
-        out = looper.loop_sah("F2", "E4")
-        out += looper.loop_sah("E4", "F2")
+        out = looper.loop_sah("F3", "E5")
+        out += looper.loop_sah("E5", "F3")
         print("\n".join(out))
     def __init__(self):
         self.constants = Constants()
@@ -67,12 +68,16 @@ class LoopSah:
             if incrementing:
                 if(note == "C"):
                     num +=1
-                result.append(f"!{note}{num} $sah")
+                result.append(f"key_note:{note}{num}")
+                result.append(f"note:-1,dur:0,vol:0")
+                result.append(f"$sah")
                 note = self.notes[(self.notes.index(note)+1)%len(self.notes)]
             else:
-                if(note == "C"):
+                if(note == "B"):
                     num -=1
-                result.append(f"!{note}{num} $sah")
+                result.append(f"key_note:{note}{num}")
+                result.append(f"note:-1,dur:0,vol:0")
+                result.append(f"$sah")
                 note = self.notes[(self.notes.index(note)-1)%len(self.notes)]
            
         return result

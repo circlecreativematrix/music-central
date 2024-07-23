@@ -80,8 +80,8 @@ from ParseMaml import ParseMaml
 
 def test_perform_notes():
     print('stuffy')
-    print(mido.get_output_names())
-    parser = ParseMaml('C:\\projects\\music-user-reform\\music-central\\tests\\data\\perform_techno.yaml')
+    #print(mido.get_output_names())
+    parser = ParseMaml('C:\\projects\\music-user-reform\\music-central\\tests\\data\\stage_fright.yaml')
     #(r"C:\projects\music-user-reform\converter-midi-offset-note\aladdin_new_world.maml.yml" )
     #
     parser.fill_vars_with_nbef()

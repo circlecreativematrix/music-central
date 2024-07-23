@@ -38,6 +38,14 @@ class MidiHolder:
     def add_tempo(self, tempo, track_number, insert_time=0):
         self.mid.addTempo(track_number, insert_time, tempo)
 
+    def add_text(self, text, track_number, dur_sec=0):
+        return
+        # this is erroring out,and never really worked
+        #dur_ticks =  #int(self.sec_to_ticks(dur_sec, self.tempo))
+        if(track_number < 0):
+            track_number = 0
+        self.mid.addText(track_number, int(dur_sec), text)
+
     def add_note(self, channel, note_midi, dur_sec, velocity=64, is_chord=False):
         track = channel
         dur_ticks = int(self.sec_to_ticks(dur_sec, self.tempo))
@@ -138,7 +146,7 @@ class MidiHolder:
     def sec_to_ticks(self, seconds, tempo):
 
         seconds_per_tick = (60000 / (tempo * self.mid.ticks_per_quarternote)) / 1000
-        return seconds / seconds_per_tick * 1.0
+        return float(seconds) / seconds_per_tick * 1.0
         # mido.second2tick(seconds,ticks_per_beat=480,tempo = tempo)#hardcoded
 
     def dur_to_ticks(self, dur, tempo):

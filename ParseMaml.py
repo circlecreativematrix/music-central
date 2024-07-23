@@ -9,7 +9,7 @@ class ParseMaml:
      This constructs yaml from maml path, config is hardcoded as I don't see this changing. 
      @ bag holds all the notes in nbef form for each phrase/ combination
     '''
-    def __init__(self, maml_path):
+    def __init__(self, maml_path, config_path = "./config/config.yaml"):
         self.printer = Printer()
         self.combinations = Combinations()
         self.nickname = Nicknames()
@@ -17,7 +17,7 @@ class ParseMaml:
             self.maml = maml_path
         else: 
             self.maml = self.printer.load_yaml(maml_path)
-        self.config= self.printer.load_yaml("./config/config.yaml") # hardcoded
+        self.config= self.printer.load_yaml(config_path) 
         self.bag = {}
 
          

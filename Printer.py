@@ -139,9 +139,9 @@ class Printer():
 
     def run_command_return_output_file(self, command, output_file, name):
         nbef_data = None
-        cmd = command
+        cmd = shlex.split(command)
         test=None
-       
+
         test = subprocess.run(cmd, shell=False, stderr=subprocess.PIPE)
         if test.stderr:
             print(test.stderr.decode('utf-8').replace('\r\n', '\n'), f'^^ above is from outside of music-central: {name}')
@@ -179,7 +179,7 @@ class Printer():
             nbef_data = file.read()
             return yaml.safe_load(nbef_data)
     
-
+    # todo: this is busted, need to fix it.
     def handle_live(self, start_time, velocity, time_s,track, midi_num, type_onoff,):
        
         #self.live.open_port()
@@ -195,11 +195,11 @@ class Printer():
             
     def get_note_details(self,generated, notebeat ):
         note_type =notebeat.get('note_type', generated.get("note_type", ""))
-      
+        if note_type == '':
+            return None
         if note_type == "midi":
             
-            return { "velocity": notebeat['velocity'], "midi": notebeat['midi'], 
-                    "track": notebeat.get('track', 0), "note_type": note_type}
+            return {**notebeat , "note_type": note_type}
         if note_type == "standard":
             return { "velocity": notebeat['velocity'], "note": notebeat['note'], 
                     "track": notebeat.get('track', 0), "note_type": note_type}
@@ -210,8 +210,11 @@ class Printer():
         beat_type = notebeat.get('beat_type', generated.get("beat_type", ""))
         tempo = notebeat.get('tempo', generated.get("tempo", None))
         midi_ppq = notebeat.get('midi_ppq', generated.get("midi_ppq", None))
+        if notebeat.get('signal') is None:
+                return None
         if beat_type == "signal_ms":
-            return { "signal": notebeat['signal'], "time_s": notebeat['time_s'], }
+           
+            return { "signal": notebeat['signal'], "time_s": float(notebeat['time_s']), }
         if beat_type == "signal_tick":
             # todo - revisit ticks_to_dur - 11/4/2023 , it sounds correct? but time_s is in seconds  ,not ms? yet it works fine
             return { "signal": notebeat['signal'], "time_s": self.midi.ticks_to_dur( notebeat['time_tick'], midi_ppq/4,tempo), 
@@ -237,22 +240,33 @@ class Printer():
         start_time = time.time()
         
         for notebeat in generated['notes']:
-            if  not notebeat.get("midi"):
-                # it is the header? 
+
+            if notebeat.get('tempo'):
                 generated['tempo'] = notebeat.get('tempo')
+            if notebeat.get('midi_ppq'):
                 generated['midi_ppq'] = notebeat.get('midi_ppq')
+            if notebeat.get('beat_type'):
                 generated['beat_type'] = notebeat.get('beat_type')
+            if notebeat.get('note_type'):
                 generated['note_type'] = notebeat.get('note_type')
-                continue
             note = self.get_note_details(generated, notebeat)
+            if notebeat.get('label') and to_file:
+                self.midi.add_text(notebeat['label'], notebeat['track'], int(float(notebeat['time_s'])))
             beat =  self.get_beat_details(generated, notebeat)
+            if not beat or not note:
+                continue
+       
             # each of these can happen in a separate thread. 11/4/23 -todo
-    
+            if not note.get('midi'):
+                print('no midi note found in notebeat', notebeat)
+                continue
             if to_nbef: 
-                nbef_note_output.append({'midi': int(note['midi']), 'velocity': note['velocity'], 'time_s': beat['time_s']*1000, 'track': note['track']})
+                nbef_note_output.append({**note, **beat})
             if to_file:
                 #add_note_on_off(self, channel, midi_type,note_midi, dur_sec, velocity = 22 )
-                self.midi.add_note_on_off(note['track'],beat['signal'],note['midi'], beat['time_s'],note['velocity']) # ischord?
+                self.midi.add_note_on_off(note['track'], beat['signal'], note['midi'], beat['time_s'], note['velocity']) # ischord?
+               
+                
             if to_live:
                 if not self.live.port :
                      self.live.port = self.port
@@ -262,7 +276,8 @@ class Printer():
                 self.handle_live(start_time, note['velocity'], beat['time_s'], note.get('track', track), note['midi'], beat['signal'])
                 #
         if to_nbef: 
-           return self.format_nbef("time_s","midi", generated['tempo'] , nbef_note_output), errors
+           # format_nbef(self, beat_type, note_type="midi" , tempo = 111 , notes= [])
+           return self.format_nbef(generated['beat_type'],"midi", generated['tempo'] , nbef_note_output), errors
         return None, errors
     def play(self):
         self.can_play = True

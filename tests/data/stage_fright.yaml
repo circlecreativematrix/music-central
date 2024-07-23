@@ -1,0 +1,185 @@
+# details:
+#   author: Robert Fornof
+#   version: 1.0.1
+#   song_name: Beautiful Butterfly
+#   description: My first techno song with music-central.
+header:
+  save_path: "C:/projects/music-user-reform/save"
+  # output_live_port: "IAC_DRIVER b1 1"
+nicknames:
+  notes:
+    - name: "minor-thump-heartbeat"
+      value: "note:0|P+4|P+4,time:P+1/32,dur:1/32,track:1,vol:80
+            time:P+1/32
+            note:0,time:P+1/32,dur:1/32,track:1,vol:50
+            time:P+1/4
+            "
+    - name: "minor-theme"
+      value: "note:$foo-2|$foo+3|$foo+5,time:P-1/4,dur:1/4,track:0,vol:80
+              note:$foo+1,time:P+1/16,dur:1/16
+              note:$foo+3,time:P+1/16
+              note:$foo+5,time:P+1/16
+              note:$foo+2,time:P+1/16
+              note:$foo+4,time:P+1/32,dur:1/16,vol:127|4
+              note:$foo+4,time:P+1/32,dur:1/16
+              note:$foo+4,time:P+1/16,dur:1/16
+              note:$foo+4,time:P+1/16,dur:1/16
+              note:$foo+4,time:P+1/16,dur:1/16
+              note:$foo|$foo+2|$foo+4,time:P-1/4,dur:1/4,track:0
+            "
+    - name: "scale-down"
+      value: "time:!scale_len=P+1/32
+              note:P,time:$scale_len,dur:1/32
+              note:P-1,time:$scale_len
+              note:P-1,time:$scale_len
+              note:P-1,time:$scale_len
+            "
+    - name: "scale-up"
+      value: "time:!scale_len=P+1/32
+              note:P,time:$scale_len,dur:1/32
+              note:P+1,time:$scale_len
+              note:P+1,time:$scale_len
+              note:P+1,time:$scale_len
+            "
+    - name: "stacatto"
+      value: "
+            time:!bar=P+1/32
+            note:$stac-2|$stac|$stac+5,time:$bar,io:1
+            note:$stac-2|$stac|$stac+5,time:$bar,io:0
+            note:$stac-2|$stac+5,time:$bar,io:1
+            note:$stac-2|$stac+5,time:$bar,io:0
+            note:$stac-2|$stac+5,time:$bar,io:1
+            note:$stac-2|$stac+5,time:$bar,io:0
+            note:$stac-2|$stac+5,time:$bar,io:1
+            note:$stac-2|$stac+5,time:$bar,io:0"
+    - name: "play_stacatto"
+      value: "$stacatto
+            $stacatto
+            $stacatto
+            $stacatto
+            $stacatto
+            $stacatto
+            $stacatto
+            $stacatto"
+    - name: "oompah"
+      value: "
+          note:$oomp-2|P+2,time:P+1/8,dur:1/8
+          note:$oomp|P-2,time:P+1/8,dur:1/8
+          note:$oomp-8|P+2,time:P+1/4,dur:1/4
+          note:$oomp-4|P+2,time:P+1/4,dur:1/4
+          note:$oomp|P-2,time:P+1/8,dur:1/8
+          note:$oomp-9|P+2,time:P+1/8,dur:1/8
+          note:$oomp|P-2,time:P+1/8,dur:1/8
+          note:$oomp-5|P-2,time:P+1/4,dur:1/4
+        "
+phrases:
+
+  phrase.standard.1: #should also have a path to it
+    type: fornof.standard
+    input:
+      notes: "tempo:60,key_note:C4,key_type:major
+            label:intro_1
+            note:!foo=0
+           note:$foo,dur:0
+           $minor-theme
+           note:!foo=-7
+           note:$foo,dur:0
+            $minor-theme
+            label:foolicious
+            note:14,dur:0
+            $scale-down
+            note:18,dur:0
+            $scale-down
+            note:16,dur:0
+            $scale-down
+            note:8,dur:0
+            $scale-down
+            note:P-1|P+3|P+2,time:P+2/16,dur:2/16
+            note:P-8,time:P+2/16,dur:2/16
+            note:8,dur:0
+            $scale-down
+            $scale-down 
+            $scale-down  
+            note:P-1|P+3|P+2,time:P+2/16,dur:2/16
+            label:intro_into_verse_1
+            vol:40
+            $play_stacatto
+            note:!stac=4
+            vol:127|32
+            $play_stacatto
+            note:!stac=-2
+            $play_stacatto
+            note:!stac=-4
+            $play_stacatto
+            note:!stac=-2
+            $play_stacatto
+            note:-1,dur:0,vol:0,time:P,io:-1
+            $scale-up
+            note:7,dur:0,vol:0
+            $scale-up
+            $scale-down
+            note:5,dur:0,vol:0
+            $scale-up
+            note:P-1|P+3|P+2,time:P+2/16,dur:2/16
+            tempo:60,key_note:C4,key_type:major
+            note:0|P+3|P+2,time:P+2/16,dur:2/16
+            note:-1|P+3|P+2,time:P+2/16,dur:2/16
+            note:-1|P+3|P+2,time:P+1/16,dur:1/16
+            note:5|P+2|P+2,time:P+4/16,dur:4/16
+            note:5|P+2|P+2,time:P+1/16,dur:1/16
+            note:!oomp=8
+            $oompah
+            note:!oomp=12
+            $oompah
+            note:!oomp=10
+            $oompah
+            note:!oomp=7
+            $oompah
+            note:!oomp=10
+            $oompah
+            note:!oomp=12
+            $oompah
+            note:!oomp=8
+            $oompah
+            note:!oomp=12
+            $oompah
+            note:!oomp=10
+            $oompah
+            note:!oomp=7
+            tempo:60,key_note:C4,key_type:minor_harmonic
+            $scale-down
+            $scale-down
+            vol:40
+            $play_stacatto
+            note:!stac=4
+            vol:127|32
+            $play_stacatto
+            note:!stac=-2
+            $play_stacatto
+            note:!stac=-4
+            $play_stacatto
+            note:!stac=-2
+            $play_stacatto
+          "
+
+    output_live: false
+    output_midi: "midi/stage_song.mid"
+    output_nbef: "nbef/stage_song.yaml"
+# combinations: []
+# - name: "combo.sample3"
+#   type: combinations_phrases
+#   output_live: false
+#   list:
+#     - name: phrase.mamlsocket.1
+#     - name: phrase.mamlsocket.2
+#     - name: phrase.mamlsocket.1
+
+# - name: "combo.sample4"
+#   type: combinations_phrases
+#   output_midi: "midi\\combo.sample4.mid"
+#   output_nbef: "nbef\\combo.sample4.yaml"
+#   output_live: false
+#   list:
+#     - name: combo.sample3
+#     - name: phrase.mamlsocket.2
+#     - name: phrase.mamlsocket.1
