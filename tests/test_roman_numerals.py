@@ -11,7 +11,9 @@ from ParseMaml import ParseMaml
 def test_perform_notes():
     print('stuffy')
     #print(mido.get_output_names())
-    parser = ParseMaml('C:\\projects\\music-user-reform\\music-central\\tests\\data\\roman_numerals.yaml')
+
+    #parser = ParseMaml('C:\\projects\\music-user-reform\\converter-standard-note\\maml_test.yml')
+    parser = ParseMaml("/mnt/c/projects/music-user-reform/converter-standard-note/maml_test.yml" )
     #(r"C:\projects\music-user-reform\converter-midi-offset-note\aladdin_new_world.maml.yml" )
     #
     parser.fill_vars_with_nbef()

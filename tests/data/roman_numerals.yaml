@@ -1,23 +1,41 @@
-# details:
-#   author: Robert Fornof
-#   version: 1.0.1
-#   song_name: Beautiful Butterfly
-#   description: My first techno song with music-central.
-header: # this should be optional
-  save_path: "C:\\projects\\music-user-reform\\save" # this should be optional
+header:
+    save_path: C:/projects/music-user-reform/save
 nicknames:
-  notes:
-    - name: "output"
-      value:
-        "halfsteps:0,time:P+1/4,note:0
-        halfsteps:9,time:P+1/4,note:1
-        "
-    
+    notes:
+        - name: header
+          value: tempo:120,time:0,key_type:major,key_note:C
 phrases:
-  phrase.standard.1: #should also have a path to it
-    type: fornof.standard
-    input:
-      notes: "tempo:60,key_type:major
-              $output"
-    output_midi: "midi/roman_numerals.mid"
-    output_nbef: "nbef/roman_numerals.yaml"
+    phrase.standard.1:
+        type: fornof.standard
+        input:
+            notes: |
+                $header
+                halfsteps:0,time:P,note:0
+                halfsteps:0,time:P,note:2
+                halfsteps:0,time:P,note:4
+                halfsteps:0,time:P+1/4,note:0
+                halfsteps:0,time:P,note:1
+                halfsteps:0,time:P,note:3
+                halfsteps:0,time:P,note:5
+                halfsteps:0,time:P+1/4,note:0
+                halfsteps:0,time:P,note:2
+                halfsteps:0,time:P,note:4
+                halfsteps:0,time:P,note:6
+                halfsteps:0,time:P+1/4,note:0
+                halfsteps:0,time:P,note:3
+                halfsteps:0,time:P,note:5
+                halfsteps:0,time:P,note:7
+                halfsteps:0,time:P+1/4,note:0
+                halfsteps:0,time:P,note:4
+                halfsteps:0,time:P,note:6
+                halfsteps:0,time:P,note:8
+                halfsteps:0,time:P+1/4,note:0
+                halfsteps:0,time:P,note:5
+                halfsteps:0,time:P,note:7
+                halfsteps:0,time:P,note:9
+                halfsteps:0,time:P+1/4,note:0
+                halfsteps:0,time:P,note:6
+                halfsteps:0,time:P,note:8
+                halfsteps:-1,time:P,note:10
+                halfsteps:0,time:P+1/4,note:0
+        output_midi: midi/goosbumps.mid
