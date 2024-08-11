@@ -5,7 +5,7 @@ import re
 
 
 class MidiHolder:
-    def __init__(self, num_tracks=1, tempo=120):
+    def __init__(self, num_tracks=16, tempo=120):
         self.tempo = tempo
         self.track_time = {}
         self.time_to_place_add_tempo = 0
@@ -19,22 +19,32 @@ class MidiHolder:
             file_format=1,
             ticks_per_quarternote=self.ppq,
             eventtime_is_ticks=True)
-        self.track_time[0] = 0
-        self.track_time[1] = 0 
-        self.create_tracks(num_tracks)
+        #self.track_time[0] = 0
+        #self.track_time[1] = 0 
+       # self.create_tracks(num_tracks)
+        self.create_time_tracks()
         self.mid.addTempo(0, self.time_to_place_add_tempo, self.tempo)
+    
+    def create_time_tracks(self):
+        for i in range(0,len(self.mid.tracks)):
+            if not self.track_time.get(i, None):
+                self.track_time[i] = 0 
+          
     def create_tracks(self, num_tracks):
         i = len(self.mid.tracks)
         while len(self.mid.tracks)  <= num_tracks:
             self.mid.tracks.append(midiutil.MidiFile.MIDITrack(True, False))
-            self.add_tempo( self.tempo, i, insert_time=0)
-            self.track_time[i] = 0 
-            self.mid.numTracks = i
+            self.add_tempo( self.tempo, i-1, insert_time=0)
+            self.mid.numTracks = len(self.mid.tracks)
+            
             i+=1
+        self.create_time_tracks()
 
     def add_name(self, track_name, track_number, insert_time=0):
         self.mid.addTrackName(track_number, insert_time, track_name)
-
+    def add_key_signature(self, track_number, insert_time=0, accidentals=0, accidental_type=MAJOR, mode=0):
+        self.mid.addKeySignature(track_number,insert_time,accidentals,accidental_type, mode)
+        # untested
     def add_tempo(self, tempo, track_number, insert_time=0):
         self.mid.addTempo(track_number, insert_time, tempo)
 
@@ -71,8 +81,8 @@ class MidiHolder:
             raise Exception('-4 midi not implemented yet as a flag.')
             return
         if midi_type == 'note_on':
-            if len(self.mid.tracks) <= channel:
-                self.create_tracks(channel)
+            # if len(self.mid.tracks) <= channel: # channel : 0 ,1 ,2 
+            #     self.create_tracks(channel)
             self.mid.tracks[channel].eventList.append(
                 midiutil.MidiFile.NoteOn(channel, note_midi, dur_ticks, self.track_time[channel], velocity))
             self.track_time[channel] += dur_ticks
@@ -122,11 +132,11 @@ class MidiHolder:
         # self.mid.tracks = [self.mid.tracks.pop(0), self.mid.tracks.pop(0)]
         # self.mid.numTracks = 2
         # i = 0
-        #   origin = 10000000
+        # origin = 10000000
         # for _, val in self.track_time.items():
         #     if(val < origin ):
         #         origin = val
-            # i+=1
+        #     i+=1
       
         # for track in self.mid.tracks:
         #     track.closeTrack()

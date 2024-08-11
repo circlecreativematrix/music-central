@@ -11,7 +11,7 @@ from ParseMaml import ParseMaml
 def test_perform_notes():
     
     #print(mido.get_output_names())
-    config = "./tests/config/config.yaml"
+    config = "./config/config.yaml"
     #parser = ParseMaml('C:\\projects\\music-user-reform\\converter-standard-note\\maml_test.yml')
     maml_path = "/mnt/c/projects/music-user-reform/converter-standard-note/maml_test.yml"
     parser = ParseMaml(maml_path, config )

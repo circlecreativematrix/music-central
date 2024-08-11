@@ -24,7 +24,7 @@ class Printer():
     
         track_count = 1
         tempo = 60
-        self.midi = MidiHolder(track_count, tempo )
+        self.midi = MidiHolder( tempo=tempo )
         self.live = MidiLive()
         self.nickname = Nicknames()
         self.port = None
@@ -224,7 +224,7 @@ class Printer():
     def clear(self):
         track_count = 1
         tempo = 60
-        self.midi = MidiHolder(track_count, tempo )
+        self.midi = MidiHolder( tempo = tempo )
         #self.live = MidiLive("IAC_DRIVER b1 2")
     
        
@@ -238,11 +238,14 @@ class Printer():
         nbef_note_output = []
         errors = []
         start_time = time.time()
-        
+        prev_tempo = 60
         for notebeat in generated['notes']:
 
             if notebeat.get('tempo'):
                 generated['tempo'] = notebeat.get('tempo')
+                if prev_tempo != generated['tempo'] and to_file:
+                    self.midi.add_tempo(generated['tempo'], track, insert_time=0)
+                    prev_tempo = generated['tempo']
             if notebeat.get('midi_ppq'):
                 generated['midi_ppq'] = notebeat.get('midi_ppq')
             if notebeat.get('beat_type'):
