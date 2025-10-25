@@ -74,7 +74,7 @@ class MidiHolder:
         if note_midi == -2:  # rewind by specific time
             self.track_time[channel] -= dur_ticks
             return
-        if note_midi == -3:  # set to specific time0
+        if note_midi == -3:  #  set to specific time0
             self.track_time[channel] = dur_ticks
             return
         if note_midi == -4:  # set to specific time0
@@ -155,8 +155,8 @@ class MidiHolder:
 
     def sec_to_ticks(self, seconds, tempo):
 
-        seconds_per_tick = (60000 / (tempo * self.mid.ticks_per_quarternote)) / 1000
-        return float(seconds) / seconds_per_tick * 1.0
+        #seconds_per_tick = (60000 / (tempo * self.mid.ticks_per_quarternote)) / 1000
+        return float(seconds) * self.mid.ticks_per_quarternote * 1.0
         # mido.second2tick(seconds,ticks_per_beat=480,tempo = tempo)#hardcoded
 
     def dur_to_ticks(self, dur, tempo):

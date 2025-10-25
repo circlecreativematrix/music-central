@@ -5,7 +5,7 @@
 #   description: My first techno song with music-central.
 header:
   save_path: "C:/projects/music-user-reform/save"
-  output_live_port: "IAC_DRIVER b1 2"
+  #output_live_port: "loopy 1"
 nicknames:
   notes:
     - name: chords.1

@@ -7,10 +7,12 @@ import mido
 import yaml
 #@pytest.mark.skip(reason="no way of currently testing this")
 import requests
-sys.path.append('../')
+ 
+#sys.path.append('../')
+from Printer import Printer
 import time
 maml_path = "./data/example_1.yaml"
-from Printer import Printer 
+
 from ParseMaml import ParseMaml
 #@pytest.mark.skip(reason="no way of currently testing this")
 
@@ -75,7 +77,6 @@ from ParseMaml import ParseMaml
 #         mid_nbef =yaml.safe_load(file.read())
        
 #         assert len(mid_nbef['notes']) > 0
-
 
 
 def test_perform_notes():

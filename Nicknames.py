@@ -90,7 +90,7 @@ class Nicknames():
                        
                     else:
                         notes[0][i] =  notes[0][i].replace(f'${replacement}', bag[replacement],100)
-                        print(phrase, 'is it set?')
+                        print(phrase, 'is replacement set?')
                         
                 else:
                     pass
